@@ -40,7 +40,7 @@ const categories = [
 export default function StudioCategories() {
   return (
     <section className="bg-[#FAF8F5] py-14 8 md:py-16">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#F06A3C]">
