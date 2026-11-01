@@ -1,7 +1,7 @@
 
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
@@ -16,10 +16,10 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.target);
 
     const user = Object.fromEntries(formData.entries()) as {
       email: string;
@@ -49,6 +49,12 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
+
+  const handleGoogleLogin = async () => {
+              await authClient.signIn.social({
+                  provider: "google",
+              });
+          };
 
   const inputClass =
     "w-full rounded-xl border border-[#EAE5DF] bg-white py-3 pl-11 pr-4 text-sm text-[#242321] outline-none transition placeholder:text-[#A7A19A] focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10";
@@ -154,6 +160,7 @@ const LoginForm = () => {
       </div>
 
       <button
+        onClick={handleGoogleLogin}
         type="button"
         className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#EAE5DF] bg-white py-3 text-sm font-semibold text-[#242321] transition hover:bg-[#F5F1EB]"
       >
