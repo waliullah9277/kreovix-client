@@ -42,7 +42,7 @@ const HowBookingWorks = () => {
     <section className="bg-[#FAF8F5] py-10 md:py-14">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="mb-8 md:mb-10 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col justify-between gap-6 md:mb-10 md:flex-row md:items-end">
           <div className="max-w-xl mb-6">
             <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-[#F06A3C]">
               Simple Process
