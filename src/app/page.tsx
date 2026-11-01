@@ -1,4 +1,5 @@
 import Banner from "@/components/home/Banner";
+import StudioCategories from "@/components/home/StudioCategories";
 import Image from "next/image";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <main>
         <Banner/>
+        <StudioCategories/>
       </main>
     </div>
   );
