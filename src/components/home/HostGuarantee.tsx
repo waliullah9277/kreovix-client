@@ -40,7 +40,7 @@ const guarantees = [
 
 const HostGuarantee = () => {
   return (
-    <section className="relative overflow-hidden bg-[#242321] py-12 md:py-16">
+    <section id="become-a-host" className="scroll-mt-24 relative overflow-hidden bg-[#242321] py-12 md:py-16">
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#F06A3C]/10 blur-[100px]" />
 

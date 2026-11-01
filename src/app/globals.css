@@ -185,3 +185,7 @@
     width: calc(100% - 64px);
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}

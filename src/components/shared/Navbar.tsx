@@ -14,7 +14,7 @@ import {
   LogOut,
   ChevronDown,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -24,11 +24,12 @@ const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Explore Studios", href: "/studios" },
-    { name: "How It Works", href: "/how-it-works" },
+    { name: "How It Works", href: "/#how-booking-works" },
     { name: "About Us", href: "/about" },
   ];
 
@@ -39,8 +40,68 @@ const Navbar = () => {
     { name: "My Bookings", href: "/dashboard/my-bookings", icon: CalendarDays },
   ];
 
+  // Detect active section while scrolling
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+
+    const updateActiveSection = () => {
+      const section = document.getElementById("how-booking-works");
+
+      if (!section) {
+        setActiveSection(null);
+        return;
+      }
+
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const scrollPosition = window.scrollY + 100;
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionBottom
+      ) {
+        setActiveSection("how-booking-works");
+      } else {
+        setActiveSection(null);
+      }
+    };
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", updateActiveSection, {
+      passive: true,
+    });
+
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [pathname]);
+
+  // Handle navigation click
+  const handleNavClick = (href: string) => {
+    if (href === "/#how-booking-works") {
+      setActiveSection("how-booking-works");
+    } else {
+      setActiveSection(null);
+    }
+  };
+
+  // Check active navigation
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
+    if (href === "/") {
+      return pathname === "/" && activeSection !== "how-booking-works";
+    }
+
+    if (href === "/#how-booking-works") {
+      return pathname === "/" && activeSection === "how-booking-works";
+    }
+
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
@@ -61,6 +122,7 @@ const Navbar = () => {
             <Link
               key={link.href}
               href={link.href}
+              onClick={() => handleNavClick(link.href)}
               className={`relative py-1 text-sm font-medium transition-colors ${
                 isActive(link.href)
                   ? "text-[#F06A3C]"
@@ -114,8 +176,12 @@ const Navbar = () => {
               {isProfileOpen && (
                 <div className="absolute right-0 mt-3 w-60 overflow-hidden rounded-xl border border-[#EAE5DF] bg-white py-2 shadow-xl">
                   <div className="border-b border-[#EAE5DF] px-4 py-3">
-                    <p className="font-semibold text-[#242321]">User Name</p>
-                    <p className="text-xs text-[#77736F]">user@example.com</p>
+                    <p className="font-semibold text-[#242321]">
+                      User Name
+                    </p>
+                    <p className="text-xs text-[#77736F]">
+                      user@example.com
+                    </p>
                   </div>
 
                   {profileLinks.map((link) => {
@@ -170,7 +236,10 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleNavClick(link.href);
+                }}
                 className={`rounded-lg px-4 py-2.5 text-sm font-medium transition ${
                   isActive(link.href)
                     ? "bg-[#FCE4DB] text-[#F06A3C]"
