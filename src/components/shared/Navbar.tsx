@@ -14,7 +14,7 @@ import {
   LogOut,
   ChevronDown,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -39,49 +39,6 @@ const Navbar = () => {
     { name: "My Studio Listings", href: "/dashboard/my-studios", icon: Building2 },
     { name: "My Bookings", href: "/dashboard/my-bookings", icon: CalendarDays },
   ];
-
-  // Detect active section while scrolling
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActiveSection(null);
-      return;
-    }
-
-    const updateActiveSection = () => {
-      const section = document.getElementById("how-booking-works");
-
-      if (!section) {
-        setActiveSection(null);
-        return;
-      }
-
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      const scrollPosition = window.scrollY + 100;
-
-      if (
-        scrollPosition >= sectionTop &&
-        scrollPosition < sectionBottom
-      ) {
-        setActiveSection("how-booking-works");
-      } else {
-        setActiveSection(null);
-      }
-    };
-
-    updateActiveSection();
-
-    window.addEventListener("scroll", updateActiveSection, {
-      passive: true,
-    });
-
-    window.addEventListener("resize", updateActiveSection);
-
-    return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
-    };
-  }, [pathname]);
 
   // Handle navigation click
   const handleNavClick = (href: string) => {
@@ -110,7 +67,7 @@ const Navbar = () => {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
         {/* Logo */}
-        <Link href="/" className="shrink-0">
+        <Link href="/" className="shrink-0" onClick={() => setActiveSection(null)}>
           <span className="text-2xl font-extrabold tracking-tight text-[#242321]">
             Kreo<span className="text-[#F06A3C]">vix</span>
           </span>

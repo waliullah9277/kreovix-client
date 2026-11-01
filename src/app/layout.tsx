@@ -3,7 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -26,6 +26,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         
         <Navbar />
         {children}
+         <Toaster
+          position="top-right"
+          offset="80px"
+          toastOptions={{
+            classNames: {
+              success: "!bg-green-600 !text-white !border-green-600",
+              error: "!bg-red-600 !text-white !border-red-600",
+            },
+          }}
+        />
         <Footer/>
         
         </body>
