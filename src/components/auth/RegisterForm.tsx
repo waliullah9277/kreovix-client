@@ -194,7 +194,7 @@ const RegisterForm = () => {
                             name="image"
                             value={photoURL}
                             onChange={(e) => setPhotoURL(e.target.value)}
-                            placeholder="https://example.com/photo.jpg"
+                            placeholder="https://i.ibb.co.com/example.jpg"
                             className={inputClass}
                         />
                     </div>

@@ -40,7 +40,7 @@ const Navbar = () => {
 
     const profileLinks = [
         { name: "Profile", href: "/profile", icon: UserRound  },
-        { name: "Add New Studio", href: "/dashboard/add-studio", icon: Plus },
+        { name: "Add New Studio", href: "add-new-studio", icon: Plus },
         { name: "My Studio Listings", href: "/dashboard/my-studios", icon: Building2 },
         { name: "My Bookings", href: "/dashboard/my-bookings", icon: CalendarDays },
     ];
