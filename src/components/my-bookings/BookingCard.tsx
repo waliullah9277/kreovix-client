@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
     CalendarDays,
     ShieldCheck,
@@ -11,7 +12,6 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
 
 interface Studio {
     _id: string;
@@ -36,6 +36,11 @@ const getToday = () => {
 };
 
 const BookingCard = ({ studio }: BookingCardProps) => {
+    const router = useRouter();
+
+    const { data: session, isPending } = authClient.useSession();
+    const user = session?.user;
+
     const [showBooking, setShowBooking] = useState(false);
     const [showSummary, setShowSummary] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,26 +52,24 @@ const BookingCard = ({ studio }: BookingCardProps) => {
     const hourlyRate = Number(studio.hourlyRate) || 0;
     const securityDeposit = Number(studio.securityDeposit) || 0;
 
-    const router = useRouter();
-
-    // Convert HH:mm into minutes
+    // Convert time into minutes
     const convertToMinutes = (time: string) => {
         const [hours, minutes] = time.split(":").map(Number);
-
         return hours * 60 + minutes;
     };
 
-    // Calculate Duration
     const startMinutes = convertToMinutes(startTime);
     const endMinutes = convertToMinutes(endTime);
 
+    // Duration calculation
     const durationMinutes = Math.max(0, endMinutes - startMinutes);
     const durationHours = durationMinutes / 60;
 
-    // Price Calculation
+    // Price calculation
     const rentalPrice = durationHours * hourlyRate;
     const totalPrice = rentalPrice + securityDeposit;
 
+    // Booking validation
     const isValidTime = durationMinutes > 0;
 
     const isPastDate = bookingDate < getToday();
@@ -74,7 +77,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
     const isPastTime =
         bookingDate === getToday() &&
         startMinutes <=
-        new Date().getHours() * 60 + new Date().getMinutes();
+            new Date().getHours() * 60 + new Date().getMinutes();
 
     const isValidBooking =
         bookingDate !== "" &&
@@ -112,12 +115,33 @@ const BookingCard = ({ studio }: BookingCardProps) => {
         );
     };
 
-    const { data: session } = authClient.useSession();
+    // Redirect to login with current page URL
+    const redirectToLogin = () => {
+        toast.error("Please login first!");
 
-    const user = session?.user;
+        const currentPath =
+            window.location.pathname + window.location.search;
 
+        router.push(
+            `/login?callbackUrl=${encodeURIComponent(currentPath)}`
+        );
+    };
+
+    // Booking button click
+    const handleBookingClick = () => {
+        if (isPending) return;
+
+        if (!user) {
+            redirectToLogin();
+            return;
+        }
+
+        setShowSummary(false);
+        setShowBooking(true);
+    };
+
+    // Review booking
     const handleBooking = () => {
-
         if (isPastDate) {
             toast.error("You cannot book a past date.");
             return;
@@ -136,14 +160,16 @@ const BookingCard = ({ studio }: BookingCardProps) => {
         setShowSummary(true);
     };
 
+    // Close booking popup
     const closeBooking = () => {
         setShowBooking(false);
         setShowSummary(false);
     };
 
+    // Confirm booking
     const handleConfirmBooking = async () => {
         if (!user) {
-            toast.error("Please login first!");
+            redirectToLogin();
             return;
         }
 
@@ -186,13 +212,15 @@ const BookingCard = ({ studio }: BookingCardProps) => {
             const data = await res.json();
 
             if (res.ok) {
-                toast.success(`${studio.title}Booking successful!`);
+                toast.success(`${studio.title} Booking successful!`);
+
                 closeBooking();
+
                 router.push("/my-bookings");
             } else {
                 toast.error(data.message || "Booking failed!");
             }
-        } catch (error) {
+        } catch {
             toast.error("Something went wrong!");
         } finally {
             setIsSubmitting(false);
@@ -204,7 +232,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
             {/* Booking Card */}
             <aside className="lg:sticky lg:top-24 lg:h-fit">
                 <div className="rounded-2xl border border-[#EAE5DF] bg-white p-6 shadow-sm">
-
                     {/* Hourly Rate */}
                     <div className="flex items-end gap-1">
                         <span className="text-3xl font-bold text-[#242321]">
@@ -220,7 +247,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
 
                     {/* Studio Information */}
                     <div className="space-y-4 text-sm">
-
                         <div className="flex items-center justify-between">
                             <span className="text-[#77736F]">
                                 Hourly Rate
@@ -250,24 +276,24 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                 {studio.maxCapacity} People
                             </span>
                         </div>
-
                     </div>
 
                     {/* Booking Button */}
                     <button
                         type="button"
-                        onClick={() => {
-                            setShowSummary(false);
-                            setShowBooking(true);
-                        }}
-                        className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-[#F06A3C] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#D9562D]"
+                        onClick={handleBookingClick}
+                        disabled={isPending}
+                        className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-[#F06A3C] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#D9562D] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         <CalendarDays size={18} />
-                        Book Workspace Now
+
+                        {isPending
+                            ? "Loading..."
+                            : "Book Workspace Now"}
                     </button>
 
                     <p className="mt-4 text-center text-xs text-[#77736F]">
-                        {`You won't be charged yet.`}
+                        You won&apos;t be charged yet.
                     </p>
 
                     <div className="mt-5 flex items-center justify-center gap-2 text-xs text-[#77736F]">
@@ -277,7 +303,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                         />
                         Secure workspace booking
                     </div>
-
                 </div>
             </aside>
 
@@ -294,7 +319,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                         onClick={(e) => e.stopPropagation()}
                         className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-[#EAE5DF] bg-[#FAF8F5] p-5 shadow-2xl sm:p-7"
                     >
-
                         {/* Modal Header */}
                         <div className="flex items-start justify-between gap-4">
                             <div>
@@ -328,7 +352,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                             <>
                                 {/* Booking Date */}
                                 <div className="rounded-xl border border-[#EAE5DF] bg-white p-5">
-
                                     <h3 className="mb-5 flex items-center gap-2 text-base font-bold text-[#242321]">
                                         <CalendarDays
                                             size={19}
@@ -358,7 +381,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
 
                                 {/* Time Selection */}
                                 <div className="mt-5 rounded-xl border border-[#EAE5DF] bg-white p-5">
-
                                     <h3 className="mb-5 flex items-center gap-2 text-base font-bold text-[#242321]">
                                         <Clock3
                                             size={19}
@@ -368,7 +390,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                     </h3>
 
                                     <div className="grid gap-4 sm:grid-cols-2">
-
                                         {/* Start Time */}
                                         <div>
                                             <label
@@ -408,7 +429,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                                 className="w-full rounded-xl border border-[#EAE5DF] bg-white px-4 py-3 text-sm text-[#242321] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
                                             />
                                         </div>
-
                                     </div>
 
                                     {/* Duration */}
@@ -433,18 +453,15 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                             Please select a future start time.
                                         </p>
                                     )}
-
                                 </div>
 
                                 {/* Price Breakdown */}
                                 <div className="mt-5 rounded-xl border border-[#EAE5DF] bg-white p-5">
-
                                     <h3 className="mb-5 text-base font-bold text-[#242321]">
                                         Price Breakdown
                                     </h3>
 
                                     <div className="space-y-4 text-sm">
-
                                         <div className="flex items-center justify-between">
                                             <span className="text-[#77736F]">
                                                 Hourly Rate
@@ -496,11 +513,10 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                                 ${formatPrice(totalPrice)}
                                             </span>
                                         </div>
-
                                     </div>
                                 </div>
 
-                                {/* Continue Button */}
+                                {/* Review Button */}
                                 <button
                                     type="button"
                                     onClick={handleBooking}
@@ -515,7 +531,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                             <>
                                 {/* Booking Summary */}
                                 <div className="rounded-xl border border-[#EAE5DF] bg-white p-5">
-
                                     <div className="mb-5 flex items-center gap-3">
                                         <CheckCircle2
                                             size={25}
@@ -528,7 +543,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                     </div>
 
                                     <div className="space-y-4 text-sm">
-
                                         <div className="flex items-center justify-between gap-4">
                                             <span className="text-[#77736F]">
                                                 Studio
@@ -610,17 +624,16 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                                 ${formatPrice(totalPrice)}
                                             </span>
                                         </div>
-
                                     </div>
                                 </div>
 
                                 {/* Summary Buttons */}
                                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-
                                     <button
                                         type="button"
                                         onClick={() => setShowSummary(false)}
-                                        className="flex-1 rounded-xl border border-[#EAE5DF] bg-white px-5 py-3 text-sm font-semibold text-[#77736F] transition hover:bg-[#F5F2EE]"
+                                        disabled={isSubmitting}
+                                        className="flex-1 rounded-xl border border-[#EAE5DF] bg-white px-5 py-3 text-sm font-semibold text-[#77736F] transition hover:bg-[#F5F2EE] disabled:opacity-60"
                                     >
                                         Edit Booking
                                     </button>
@@ -631,9 +644,10 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                         disabled={isSubmitting}
                                         className="flex-1 rounded-xl bg-[#F06A3C] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#D9562D] disabled:cursor-not-allowed disabled:opacity-60"
                                     >
-                                        {isSubmitting ? "Booking..." : "Confirm Booking"}
+                                        {isSubmitting
+                                            ? "Booking..."
+                                            : "Confirm Booking"}
                                     </button>
-
                                 </div>
 
                                 <p className="mt-4 text-center text-xs text-[#77736F]">
@@ -642,7 +656,6 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                 </p>
                             </>
                         )}
-
                     </div>
                 </div>
             )}
