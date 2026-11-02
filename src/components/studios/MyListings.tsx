@@ -25,8 +25,8 @@ const MyListings = ({ listings }: MyListingsProps) => {
     };
 
     return (
-        <section className="min-h-screen bg-[#FAF8F5] px-4 py-12">
-            <div className="mx-auto max-w-7xl">
+        <section className="min-h-screen bg-[#FAF8F5] py-12">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 {/* Page Header */}
                 <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">

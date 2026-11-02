@@ -119,8 +119,8 @@ const AllStudiosPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] px-4 py-12 sm:px-6 lg:py-16">
-      <div className="mx-auto max-w-7xl">
+    <main className="min-h-screen bg-[#FAF8F5]  py-12 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Page Header */}
         <div className="mb-10">
