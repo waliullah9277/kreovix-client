@@ -154,10 +154,10 @@ const AddNewStudio = () => {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-[#EAE5DF] bg-white px-4 py-3 text-sm text-[#242321] outline-none transition placeholder:text-[#A5A09A] focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10";
+    "w-full rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-4 py-3 text-sm text-[#242321] dark:text-[#F9FAFB] outline-none transition placeholder:text-[#A5A09A] dark:placeholder:text-[#9CA3AF] focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10";
 
   const labelClass =
-    "mb-2 block text-sm font-semibold text-[#34312E]";
+    "mb-2 block text-sm font-semibold text-[#34312E] dark:text-[#F9FAFB]";
 
   if (isPending || !session) {
     return (
@@ -168,14 +168,14 @@ const AddNewStudio = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] px-4 py-10 sm:px-6 lg:py-14">
+    <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#111827] px-4 py-10 sm:px-6 lg:py-14">
       <div className="mx-auto max-w-5xl">
 
         {/* Header */}
         <div className="mb-8">
           <Link
             href="/my-listings"
-            className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-[#77736F] transition hover:text-[#F06A3C]"
+            className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-[#77736F] dark:text-[#CBD5E1] transition hover:text-[#F06A3C]"
           >
             <ArrowLeft size={16} />
             Back to My Listings
@@ -190,11 +190,11 @@ const AddNewStudio = () => {
                 </span>
               </div>
 
-              <h1 className="text-3xl font-bold tracking-tight text-[#242321] sm:text-4xl">
+              <h1 className="text-3xl font-bold tracking-tight text-[#242321] dark:text-[#F9FAFB] sm:text-4xl">
                 Add New Studio
               </h1>
 
-              <p className="mt-2 text-sm text-[#77736F]">
+              <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Share your creative space with people looking for the
                 perfect studio.
               </p>
@@ -206,12 +206,12 @@ const AddNewStudio = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
 
           {/* Basic Information */}
-          <section className="rounded-2xl border border-[#EAE5DF] bg-white p-5 shadow-sm sm:p-8">
+          <section className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5 shadow-sm sm:p-8">
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-[#242321]">
+              <h2 className="text-lg font-bold text-[#242321] dark:text-[#F9FAFB]">
                 Basic Information
               </h2>
-              <p className="mt-1 text-sm text-[#77736F]">
+              <p className="mt-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Provide the basic details of your studio.
               </p>
             </div>
@@ -243,7 +243,7 @@ const AddNewStudio = () => {
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className={`${inputClass} ${!formData.category ? "text-[#A5A09A]" : ""
+                  className={`${inputClass} ${!formData.category ? "text-[#A5A09A] dark:text-[#9CA3AF]" : ""
                     }`}
                   required
                 >
@@ -314,12 +314,12 @@ const AddNewStudio = () => {
           </section>
 
           {/* Location & Image */}
-          <section className="rounded-2xl border border-[#EAE5DF] bg-white p-5 shadow-sm sm:p-8">
+          <section className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5 shadow-sm sm:p-8">
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-[#242321]">
+              <h2 className="text-lg font-bold text-[#242321] dark:text-[#F9FAFB]">
                 Location & Media
               </h2>
-              <p className="mt-1 text-sm text-[#77736F]">
+              <p className="mt-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Help people find and visualize your studio.
               </p>
             </div>
@@ -364,7 +364,7 @@ const AddNewStudio = () => {
               </div>
 
               {formData.imageUrl && (
-                <div className="overflow-hidden rounded-xl border border-[#EAE5DF]">
+                <div className="overflow-hidden rounded-xl border border-[#EAE5DF] dark:border-[#374151]">
                   <img
                     src={formData.imageUrl}
                     alt="Studio preview"
@@ -379,12 +379,12 @@ const AddNewStudio = () => {
           </section>
 
           {/* Amenities */}
-          <section className="rounded-2xl border border-[#EAE5DF] bg-white p-5 shadow-sm sm:p-8">
+          <section className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5 shadow-sm sm:p-8">
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-[#242321]">
+              <h2 className="text-lg font-bold text-[#242321] dark:text-[#F9FAFB]">
                 Studio Amenities
               </h2>
-              <p className="mt-1 text-sm text-[#77736F]">
+              <p className="mt-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Select the facilities available in your studio.
               </p>
             </div>
@@ -399,14 +399,14 @@ const AddNewStudio = () => {
                     type="button"
                     onClick={() => toggleAmenity(amenity)}
                     className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm font-medium transition ${isSelected
-                        ? "border-[#F06A3C] bg-[#FFF4EF] text-[#D9562D]"
-                        : "border-[#EAE5DF] bg-white text-[#77736F] hover:border-[#F06A3C]/50"
+                        ? "border-[#F06A3C] bg-[#FFF4EF] dark:bg-[#3B2B26] text-[#D9562D] dark:text-[#FB916E]"
+                        : "border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] text-[#77736F] dark:text-[#CBD5E1] hover:border-[#F06A3C]/50"
                       }`}
                   >
                     <span
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${isSelected
                           ? "border-[#F06A3C] bg-[#F06A3C] text-white"
-                          : "border-[#D8D2CB]"
+                          : "border-[#D8D2CB] dark:border-[#4B5563]"
                         }`}
                     >
                       {isSelected && <Check size={13} />}
@@ -417,18 +417,18 @@ const AddNewStudio = () => {
               })}
             </div>
 
-            <p className="mt-4 text-xs text-[#A5A09A]">
+            <p className="mt-4 text-xs text-[#A5A09A] dark:text-[#9CA3AF]">
               {selectedAmenities.length} amenities selected
             </p>
           </section>
 
           {/* Description */}
-          <section className="rounded-2xl border border-[#EAE5DF] bg-white p-5 shadow-sm sm:p-8">
+          <section className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5 shadow-sm sm:p-8">
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-[#242321]">
+              <h2 className="text-lg font-bold text-[#242321] dark:text-[#F9FAFB]">
                 Studio Overview
               </h2>
-              <p className="mt-1 text-sm text-[#77736F]">
+              <p className="mt-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Tell visitors what makes your studio special.
               </p>
             </div>
@@ -449,19 +449,19 @@ const AddNewStudio = () => {
                 required
                 minLength={20}
               />
-              <p className="mt-2 text-xs text-[#A5A09A]">
+              <p className="mt-2 text-xs text-[#A5A09A] dark:text-[#9CA3AF]">
                 Minimum 20 characters.
               </p>
             </div>
           </section>
 
           {/* Owner Information */}
-          <section className="rounded-2xl border border-[#EAE5DF] bg-white p-5 shadow-sm sm:p-8">
+          <section className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5 shadow-sm sm:p-8">
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-[#242321]">
+              <h2 className="text-lg font-bold text-[#242321] dark:text-[#F9FAFB]">
                 Owner Information
               </h2>
-              <p className="mt-1 text-sm text-[#77736F]">
+              <p className="mt-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Your account information is automatically added.
               </p>
             </div>
@@ -476,7 +476,7 @@ const AddNewStudio = () => {
                   type="text"
                   value={user?.name || ""}
                   readOnly
-                  className={`${inputClass} cursor-not-allowed bg-[#FAF8F5] text-[#77736F]`}
+                  className={`${inputClass} cursor-not-allowed bg-[#FAF8F5] dark:bg-[#111827] text-[#77736F] dark:text-[#CBD5E1]`}
                 />
               </div>
 
@@ -489,7 +489,7 @@ const AddNewStudio = () => {
                   type="email"
                   value={user?.email || ""}
                   readOnly
-                  className={`${inputClass} cursor-not-allowed bg-[#FAF8F5] text-[#77736F]`}
+                  className={`${inputClass} cursor-not-allowed bg-[#FAF8F5] dark:bg-[#111827] text-[#77736F] dark:text-[#CBD5E1]`}
                 />
               </div>
             </div>
@@ -499,7 +499,7 @@ const AddNewStudio = () => {
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
             <Link
               href="/my-listings"
-              className="inline-flex items-center justify-center rounded-xl border border-[#EAE5DF] bg-white px-6 py-3 text-sm font-semibold text-[#77736F] transition hover:bg-[#F5F2EE]"
+              className="inline-flex items-center justify-center rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-6 py-3 text-sm font-semibold text-[#77736F] dark:text-[#CBD5E1] transition hover:bg-[#F5F2EE] dark:hover:bg-[#374151]"
             >
               Cancel
             </Link>

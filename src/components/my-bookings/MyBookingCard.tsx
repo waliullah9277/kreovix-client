@@ -24,10 +24,10 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
 
     // Status badge colors
     const statusStyles: Record<string, string> = {
-        pending: "bg-amber-50 text-amber-700 border-amber-200",
-        confirmed: "bg-blue-50 text-blue-700 border-blue-200",
-        completed: "bg-green-50 text-green-700 border-green-200",
-        cancelled: "bg-red-50 text-red-700 border-red-200",
+        pending: "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-900/60",
+        confirmed: "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-900/60",
+        completed: "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-900/60",
+        cancelled: "bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 border-red-200 dark:border-red-900/60",
     };
 
     const statusStyle =
@@ -71,7 +71,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
     // ================= MOBILE CARD =================
     if (variant === "mobile") {
         return (
-            <article className="min-w-0 rounded-2xl border border-[#EAE5DF] bg-white p-4 shadow-sm">
+            <article className="min-w-0 rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-4 shadow-sm">
 
                 {/* Studio Name & Status */}
                 <div className="flex items-start justify-between gap-3">
@@ -81,7 +81,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                             Studio Reservation
                         </p>
 
-                        <h3 className="line-clamp-2 break-words text-base font-bold text-[#242321]">
+                        <h3 className="line-clamp-2 break-words text-base font-bold text-[#242321] dark:text-[#F9FAFB]">
                             {booking.studioTitle}
                         </h3>
                     </div>
@@ -96,14 +96,14 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                 </div>
 
                 {/* Divider */}
-                <div className="my-4 h-px bg-[#F0EBE6]" />
+                <div className="my-4 h-px bg-[#F0EBE6] dark:bg-[#374151]" />
 
                 {/* Booking Details */}
                 <div className="grid grid-cols-2 gap-x-3 gap-y-4">
 
                     {/* Booking Date */}
                     <div className="min-w-0">
-                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A]">
+                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A] dark:text-[#CBD5E1]">
                             <CalendarDays size={13} />
 
                             <span className="text-[11px]">
@@ -111,14 +111,14 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                             </span>
                         </div>
 
-                        <p className="text-xs font-semibold text-[#242321]">
+                        <p className="text-xs font-semibold text-[#242321] dark:text-[#F9FAFB]">
                             {formatDate(booking.bookingDate)}
                         </p>
                     </div>
 
                     {/* Booking Time */}
                     <div className="min-w-0">
-                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A]">
+                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A] dark:text-[#CBD5E1]">
                             <Clock3 size={13} />
 
                             <span className="text-[11px]">
@@ -126,7 +126,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                             </span>
                         </div>
 
-                        <p className="text-xs font-semibold leading-5 text-[#242321]">
+                        <p className="text-xs font-semibold leading-5 text-[#242321] dark:text-[#F9FAFB]">
                             {formatTime(booking.startTime)}
                             <br />
                             {formatTime(booking.endTime)}
@@ -135,7 +135,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
 
                     {/* Duration */}
                     <div className="min-w-0">
-                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A]">
+                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A] dark:text-[#CBD5E1]">
                             <Hourglass size={13} />
 
                             <span className="text-[11px]">
@@ -143,14 +143,14 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                             </span>
                         </div>
 
-                        <p className="text-xs font-semibold text-[#242321]">
+                        <p className="text-xs font-semibold text-[#242321] dark:text-[#F9FAFB]">
                             {booking.duration} Hours
                         </p>
                     </div>
 
                     {/* Total Price */}
                     <div className="min-w-0">
-                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A]">
+                        <div className="mb-1 flex items-center gap-1.5 text-[#88817A] dark:text-[#CBD5E1]">
                             <Wallet size={13} />
 
                             <span className="text-[11px]">
@@ -166,12 +166,12 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="mt-4 flex gap-2 border-t border-[#F0EBE6] pt-4">
+                <div className="mt-4 flex gap-2 border-t border-[#F0EBE6] dark:border-[#374151] pt-4">
 
                     {/* View Studio */}
                     <Link
                         href={`/studios/${booking.studioId}`}
-                        className="flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl border border-[#EAE5DF] px-3 py-2.5 text-xs font-semibold text-[#242321] transition hover:border-[#F06A3C] hover:text-[#F06A3C]"
+                        className="flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl border border-[#EAE5DF] dark:border-[#374151] px-3 py-2.5 text-xs font-semibold text-[#242321] dark:text-[#F9FAFB] transition hover:border-[#F06A3C] hover:text-[#F06A3C]"
                     >
                         View Studio
                         <ArrowUpRight size={14} />
@@ -190,22 +190,22 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
 
     // ================= DESKTOP TABLE ROW =================
     return (
-        <tr className="transition-colors hover:bg-[#FFF9F5]">
+        <tr className="transition-colors hover:bg-[#FFF9F5] dark:hover:bg-[#374151]">
 
             {/* Studio Name */}
             <td className="px-4 py-5 lg:px-5">
-                <p className="font-semibold text-[#242321]">
+                <p className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                     {booking.studioTitle}
                 </p>
             </td>
 
             {/* Booking Date */}
-            <td className="px-4 py-5 text-sm text-[#55514D] lg:px-5">
+            <td className="px-4 py-5 text-sm text-[#55514D] dark:text-[#CBD5E1] lg:px-5">
                 {formatDate(booking.bookingDate)}
             </td>
 
             {/* Booking Time */}
-            <td className="px-4 py-5 text-sm text-[#55514D] lg:px-5">
+            <td className="px-4 py-5 text-sm text-[#55514D] dark:text-[#CBD5E1] lg:px-5">
                 <span className="whitespace-nowrap">
                     {formatTime(booking.startTime)}
                     {" - "}
@@ -214,7 +214,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
             </td>
 
             {/* Duration */}
-            <td className="px-4 py-5 text-sm text-[#55514D] lg:px-5">
+            <td className="px-4 py-5 text-sm text-[#55514D] dark:text-[#CBD5E1] lg:px-5">
                 {booking.duration} Hours
             </td>
 
@@ -241,7 +241,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                     {/* View Studio */}
                     <Link
                         href={`/studios/${booking.studioId}`}
-                        className="inline-flex items-center gap-1 whitespace-nowrap rounded-lg border border-[#EAE5DF] px-3 py-2 text-xs font-semibold text-[#242321] transition hover:border-[#F06A3C] hover:text-[#F06A3C]"
+                        className="inline-flex items-center gap-1 whitespace-nowrap rounded-lg border border-[#EAE5DF] dark:border-[#374151] px-3 py-2 text-xs font-semibold text-[#242321] dark:text-[#F9FAFB] transition hover:border-[#F06A3C] hover:text-[#F06A3C]"
                     >
                         View
                         <ArrowUpRight size={14} />

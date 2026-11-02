@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -19,26 +20,34 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="light"
+      suppressHydrationWarning
       className={`${manrope.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        
-        <Navbar />
-        {children}
-         <Toaster
-          position="top-right"
-          offset="80px"
-          toastOptions={{
-            classNames: {
-              success: "!bg-green-600 !text-white !border-green-600",
-              error: "!bg-red-600 !text-white !border-red-600",
-            },
-          }}
-        />
-        <Footer/>
-        
-        </body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          storageKey="kreovix-theme"
+        >
+          <Navbar />
+
+          {children}
+
+          <Toaster
+            position="top-right"
+            offset="80px"
+            toastOptions={{
+              classNames: {
+                success: "!bg-green-600 !text-white !border-green-600",
+                error: "!bg-red-600 !text-white !border-red-600",
+              },
+            }}
+          />
+
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

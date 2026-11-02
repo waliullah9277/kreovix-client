@@ -57,23 +57,23 @@ const CancelBookingButton = ({ id }: { id: string }) => {
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-100"
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-200 dark:border-red-900/60 bg-red-50 dark:bg-red-950/40 px-3 py-2 text-xs font-semibold text-red-600 dark:text-red-400 transition hover:bg-red-100 dark:hover:bg-red-900/40"
             >
                 <XCircle size={14} />
                 Cancel
             </AlertDialogTrigger>
 
-            <AlertDialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border-[#EAE5DF] bg-white sm:max-w-md">
+            <AlertDialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] sm:max-w-md">
                 <AlertDialogHeader>
-                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-red-50">
-                        <XCircle size={24} className="text-red-500" />
+                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-red-50 dark:bg-red-950/40">
+                        <XCircle size={24} className="text-red-500 dark:text-red-400" />
                     </div>
 
-                    <AlertDialogTitle className="text-xl font-bold text-[#242321]">
+                    <AlertDialogTitle className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                         Cancel Booking?
                     </AlertDialogTitle>
 
-                    <AlertDialogDescription className="text-sm leading-6 text-[#77736F]">
+                    <AlertDialogDescription className="text-sm leading-6 text-[#77736F] dark:text-[#CBD5E1]">
                         Are you sure you want to cancel this booking?
                         This action cannot be undone.
                     </AlertDialogDescription>
@@ -82,7 +82,7 @@ const CancelBookingButton = ({ id }: { id: string }) => {
                 <AlertDialogFooter className="mt-4 gap-2">
                     <AlertDialogCancel
                         disabled={loading}
-                        className="rounded-xl border-[#EAE5DF]"
+                        className="rounded-xl border-[#EAE5DF] dark:border-[#374151]"
                     >
                         Keep Booking
                     </AlertDialogCancel>

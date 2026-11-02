@@ -40,7 +40,7 @@ const guarantees = [
 
 const HostGuarantee = () => {
   return (
-    <section id="become-a-host" className="scroll-mt-24 relative overflow-hidden bg-[#242321] py-12 md:py-16">
+    <section id="become-a-host" className="scroll-mt-24 relative overflow-hidden bg-[#242321] py-12 md:py-16 dark:bg-[#0B1220]">
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#F06A3C]/10 blur-[100px]" />
 
@@ -62,7 +62,7 @@ const HostGuarantee = () => {
             </h2>
           </div>
 
-          <p className="max-w-sm text-sm leading-7 text-white/50">
+          <p className="max-w-sm text-sm leading-7 text-white/50 dark:text-white/65">
             Great creative experiences start with peace of mind. We bring
             together trusted hosts, safer spaces, and reliable support.
           </p>
@@ -76,7 +76,7 @@ const HostGuarantee = () => {
             return (
               <div
                 key={item.number}
-                className="group rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#F06A3C]/50 hover:bg-white/[0.07] sm:p-7"
+                className="group rounded-2xl border border-white/10 bg-white/[0.04] dark:border-white/15 dark:bg-white/[0.06] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#F06A3C]/50 hover:bg-white/[0.07] sm:p-7"
               >
                 <div className="mb-8 flex items-center justify-between">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F06A3C]/10 text-[#F06A3C] transition-all duration-300 group-hover:bg-[#F06A3C] group-hover:text-white">
@@ -92,7 +92,7 @@ const HostGuarantee = () => {
                   {item.title}
                 </h3>
 
-                <p className="text-sm leading-7 text-white/45">
+                <p className="text-sm leading-7 text-white/45 dark:text-white/65">
                   {item.description}
                 </p>
 
@@ -106,7 +106,7 @@ const HostGuarantee = () => {
         </div>
 
         {/* Bottom Support Banner */}
-        <div className="mt-6 flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div className="mt-6 flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.06] dark:border-white/15 dark:bg-white/[0.08] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F06A3C] text-white">
               <Headset size={22} />
@@ -117,7 +117,7 @@ const HostGuarantee = () => {
                 Need a helping hand?
               </h3>
 
-              <p className="mt-1 text-sm text-white/45">
+              <p className="mt-1 text-sm text-white/45 dark:text-white/65">
                 Our support team is here for you, anytime.
               </p>
             </div>

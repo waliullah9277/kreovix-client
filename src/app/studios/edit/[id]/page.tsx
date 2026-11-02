@@ -113,16 +113,16 @@ export default function EditStudioPage({
     }
 
     return (
-        <section className="min-h-screen bg-[#FAF8F5] px-4 py-12">
+        <section className="min-h-screen bg-[#FAF8F5] dark:bg-[#111827] px-4 py-12">
             <div className="mx-auto max-w-5xl">
 
                 {/* Page Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-[#242321]">
+                    <h1 className="text-3xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                         Update Studio
                     </h1>
 
-                    <p className="mt-2 text-sm text-[#77736F]">
+                    <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                         Update your studio information. Your existing details
                         are already filled in.
                     </p>

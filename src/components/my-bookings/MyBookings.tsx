@@ -62,22 +62,22 @@ const MyBookings = async () => {
     // console.log("My Bookings:", bookings);
 
     return (
-        <main className="min-h-screen bg-[#FAF8F5]">
+        <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#111827]">
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 
                 {/* ================= HEADER ================= */}
                 <div className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 sm:flex-row sm:items-end">
 
                     <div>
-                        <span className="mb-3 inline-block rounded-full bg-[#FFF0E9] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#F06A3C]">
+                        <span className="mb-3 inline-block rounded-full bg-[#FFF0E9] dark:bg-[#3B2B26] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#F06A3C]">
                             My Reservations
                         </span>
 
-                        <h1 className="text-3xl font-bold text-[#242321] sm:text-4xl">
+                        <h1 className="text-3xl font-bold text-[#242321] dark:text-[#F9FAFB] sm:text-4xl">
                             My Bookings
                         </h1>
 
-                        <p className="mt-3 text-sm text-[#77736F]">
+                        <p className="mt-3 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                             View all your studio reservations in one place.
                         </p>
                     </div>
@@ -92,9 +92,9 @@ const MyBookings = async () => {
                 </div>
 
                 {/* ================= TOTAL BOOKINGS ================= */}
-                <div className="mb-6 flex items-center gap-4 rounded-2xl border border-[#EAE5DF] bg-white p-4 sm:mb-8 sm:p-6">
+                <div className="mb-6 flex items-center gap-4 rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-4 sm:mb-8 sm:p-6">
 
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FFF0E9]">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FFF0E9] dark:bg-[#3B2B26]">
                         <CalendarDays
                             size={23}
                             className="text-[#F06A3C]"
@@ -102,11 +102,11 @@ const MyBookings = async () => {
                     </div>
 
                     <div>
-                        <p className="text-sm text-[#77736F]">
+                        <p className="text-sm text-[#77736F] dark:text-[#CBD5E1]">
                             Total Reservations
                         </p>
 
-                        <h2 className="text-2xl font-bold text-[#242321]">
+                        <h2 className="text-2xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                             {bookings.length}
                         </h2>
                     </div>
@@ -127,12 +127,12 @@ const MyBookings = async () => {
                         </div>
 
                         {/* DESKTOP TABLE */}
-                        <div className="hidden overflow-hidden rounded-2xl border border-[#EAE5DF] bg-white shadow-sm md:block">
+                        <div className="hidden overflow-hidden rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] shadow-sm md:block">
 
                             <table className="w-full text-left">
 
                                 {/* Table Header */}
-                                <thead className="border-b border-[#EAE5DF] bg-[#FFF7F2]">
+                                <thead className="border-b border-[#EAE5DF] dark:border-[#374151] bg-[#FFF7F2] dark:bg-[#3B2B26]">
                                     <tr>
                                         {[
                                             "Studio",
@@ -146,7 +146,7 @@ const MyBookings = async () => {
                                             <th
                                                 key={heading}
                                                 scope="col"
-                                                className="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-[#77736F] lg:px-5"
+                                                className="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-[#77736F] dark:text-[#CBD5E1] lg:px-5"
                                             >
                                                 {heading}
                                             </th>
@@ -155,7 +155,7 @@ const MyBookings = async () => {
                                 </thead>
 
                                 {/* Table Body */}
-                                <tbody className="divide-y divide-[#EAE5DF]">
+                                <tbody className="divide-y divide-[#EAE5DF] dark:divide-[#374151]">
                                     {bookings.map((booking) => (
                                         <MyBookingCard
                                             key={booking._id}
@@ -170,18 +170,18 @@ const MyBookings = async () => {
                     </>
                 ) : (
                     /* ================= EMPTY STATE ================= */
-                    <div className="rounded-2xl border border-[#EAE5DF] bg-white px-6 py-16 text-center sm:py-20">
+                    <div className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-6 py-16 text-center sm:py-20">
 
                         <CalendarDays
                             size={45}
                             className="mx-auto mb-4 text-[#F06A3C]"
                         />
 
-                        <h2 className="text-xl font-bold text-[#242321]">
+                        <h2 className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                             No Bookings Yet
                         </h2>
 
-                        <p className="mt-3 text-sm text-[#77736F]">
+                        <p className="mt-3 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                             You haven&apos;t booked any studios yet.
                         </p>
 

@@ -58,7 +58,7 @@ const Banner = () => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <section className="relative h-[calc(100svh-4rem)] min-h-[560px] w-full overflow-hidden bg-[#171614]">
+    <section className="relative h-[calc(100svh-4rem)] min-h-[560px] w-full overflow-hidden bg-[#171614] dark:bg-[#0B1220]">
 
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
@@ -95,7 +95,7 @@ const Banner = () => {
                 />
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#171614] via-[#171614]/80 to-[#171614]/15" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#171614] via-[#171614]/80 to-[#171614]/15 dark:from-[#0B1220] dark:via-[#0B1220]/85 dark:to-[#0B1220]/25" />
 
                 {/* Content */}
                 <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16">

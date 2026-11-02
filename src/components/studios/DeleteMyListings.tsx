@@ -92,7 +92,7 @@ const DeleteMyListings = ({
                         type="button"
                         title="Delete Studio"
                         aria-label={`Delete ${listings.title}`}
-                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-red-100 bg-red-50 p-0 text-red-600 transition-all duration-200 hover:border-red-600 hover:bg-red-600 hover:text-white"
+                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-red-100 dark:border-red-500/30 bg-red-50 dark:bg-red-500/10 p-0 text-red-600 dark:text-red-400 transition-all duration-200 hover:border-red-600 hover:bg-red-600 hover:text-white"
                     >
                         <Trash2 size={16} />
                     </Button>
@@ -101,13 +101,13 @@ const DeleteMyListings = ({
                 <Trash2 size={16} />
             </AlertDialogTrigger>
 
-            <AlertDialogContent className="rounded-2xl border border-[#EAE5DF] bg-white p-6 sm:max-w-md">
+            <AlertDialogContent className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-6 sm:max-w-md">
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Delete Studio?</AlertDialogTitle>
+                    <AlertDialogTitle className="dark:text-[#F9FAFB]">Delete Studio?</AlertDialogTitle>
 
-                    <AlertDialogDescription>
+                    <AlertDialogDescription className="dark:text-[#CBD5E1]">
                         Are you sure you want to permanently delete{" "}
-                        <span className="font-semibold text-foreground">
+                        <span className="font-semibold text-foreground dark:text-[#F9FAFB]">
                             {listings.title}
                         </span>
                         ? This action cannot be undone.
@@ -115,7 +115,7 @@ const DeleteMyListings = ({
                 </AlertDialogHeader>
 
                 <AlertDialogFooter>
-                    <AlertDialogCancel disabled={isDeleting}>
+                    <AlertDialogCancel disabled={isDeleting} className="dark:border-[#374151] dark:bg-[#374151] dark:text-[#F9FAFB] dark:hover:bg-[#475569]">
                         Cancel
                     </AlertDialogCancel>
 

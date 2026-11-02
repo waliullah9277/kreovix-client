@@ -81,21 +81,21 @@ const FeaturedStudios = () => {
     const total = api?.scrollSnapList().length ?? 0;
 
     return (
-        <section className="overflow-hidden bg-[#FAF8F5] py-10 md:py-14">
+        <section className="overflow-hidden bg-[#FAF8F5] py-10 md:py-14 dark:bg-[#111827]">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 {/* Section Header */}
                 <div className="mb-9 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
                     <div>
-                        <span className="mb-3 inline-block rounded-full bg-[#FFF0E9] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#F06A3C]">
+                        <span className="mb-3 inline-block rounded-full bg-[#FFF0E9] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#F06A3C] dark:bg-[#392B2A]">
                             Explore Our Spaces
                         </span>
 
-                        <h2 className="text-3xl font-bold tracking-tight text-[#242321] sm:text-4xl">
+                        <h2 className="text-3xl font-bold tracking-tight text-[#242321] sm:text-4xl dark:text-[#F9FAFB]">
                             Featured Studios
                         </h2>
 
-                        <p className="mt-3 max-w-xl text-sm leading-6 text-[#77736F] sm:text-base">
+                        <p className="mt-3 max-w-xl text-sm leading-6 text-[#77736F] sm:text-base dark:text-[#CBD5E1]">
                             Discover inspiring creative spaces for your next
                             project, photoshoot, podcast, or production.
                         </p>
@@ -116,14 +116,14 @@ const FeaturedStudios = () => {
                         {[1, 2, 3].map((item) => (
                             <div
                                 key={item}
-                                className="overflow-hidden rounded-2xl border border-[#EAE5DF] bg-white"
+                                className="overflow-hidden rounded-2xl border border-[#EAE5DF] bg-white dark:border-[#374151] dark:bg-[#1F2937]"
                             >
-                                <div className="aspect-[4/3] animate-pulse bg-gray-200" />
+                                <div className="aspect-[4/3] animate-pulse bg-gray-200 dark:bg-[#374151]" />
 
                                 <div className="space-y-4 p-5">
-                                    <div className="h-4 w-24 animate-pulse rounded bg-gray-200" />
-                                    <div className="h-6 w-3/4 animate-pulse rounded bg-gray-200" />
-                                    <div className="h-4 w-1/2 animate-pulse rounded bg-gray-200" />
+                                    <div className="h-4 w-24 animate-pulse rounded bg-gray-200 dark:bg-[#374151]" />
+                                    <div className="h-6 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-[#374151]" />
+                                    <div className="h-4 w-1/2 animate-pulse rounded bg-gray-200 dark:bg-[#374151]" />
                                 </div>
                             </div>
                         ))}
@@ -132,12 +132,12 @@ const FeaturedStudios = () => {
 
                 {/* Empty State */}
                 {!loading && studios.length === 0 && (
-                    <div className="rounded-2xl border border-dashed border-[#EAE5DF] bg-white px-6 py-16 text-center">
-                        <h3 className="text-lg font-semibold text-[#242321]">
+                    <div className="rounded-2xl border border-dashed border-[#EAE5DF] bg-white px-6 py-16 text-center dark:border-[#374151] dark:bg-[#1F2937]">
+                        <h3 className="text-lg font-semibold text-[#242321] dark:text-[#F9FAFB]">
                             No Featured Studios Available
                         </h3>
 
-                        <p className="mt-2 text-sm text-[#77736F]">
+                        <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                             Check back soon for new creative spaces.
                         </p>
                     </div>
@@ -166,12 +166,12 @@ const FeaturedStudios = () => {
                                         key={studio._id}
                                         className="basis-[88%] pl-4 sm:basis-1/2 lg:basis-1/3"
                                     >
-                                        <article className="group h-full overflow-hidden rounded-2xl border border-[#EAE5DF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                                        <article className="group h-full overflow-hidden rounded-2xl border border-[#EAE5DF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-[#374151] dark:bg-[#1F2937]">
 
                                             {/* Studio Image */}
                                             <Link
                                                 href={`/studios/${studio._id}`}
-                                                className="relative block aspect-[4/3] overflow-hidden bg-[#F0EBE6]"
+                                                className="relative block aspect-[4/3] overflow-hidden bg-[#F0EBE6] dark:bg-[#374151]"
                                             >
                                                 {studioImage ? (
                                                     <Image
@@ -182,7 +182,7 @@ const FeaturedStudios = () => {
                                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                                     />
                                                 ) : (
-                                                    <div className="flex h-full items-center justify-center text-sm text-[#77736F]">
+                                                    <div className="flex h-full items-center justify-center text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                                         No Image Available
                                                     </div>
                                                 )}
@@ -190,13 +190,13 @@ const FeaturedStudios = () => {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
                                                 {/* Category Badge */}
-                                                <span className="absolute bottom-4 left-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[#242321] shadow-sm">
+                                                <span className="absolute bottom-4 left-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[#242321] shadow-sm dark:bg-[#1F2937] dark:text-[#F9FAFB] dark:hover:border-[#F06A3C] dark:hover:text-[#F06A3C]">
                                                     {studio.category}
                                                 </span>
 
                                                 {/* Rating Badge */}
                                                 {typeof studio.rating === "number" && (
-                                                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[#242321] shadow-sm">
+                                                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[#242321] shadow-sm dark:bg-[#1F2937] dark:text-[#F9FAFB] dark:hover:border-[#F06A3C] dark:hover:text-[#F06A3C]">
                                                         <Star
                                                             size={13}
                                                             className="fill-amber-400 text-amber-400"
@@ -210,7 +210,7 @@ const FeaturedStudios = () => {
                                             <div className="flex h-[190px] flex-col p-5">
 
                                                 {/* Location */}
-                                                <div className="flex items-center gap-1.5 text-xs text-[#77736F]">
+                                                <div className="flex items-center gap-1.5 text-xs text-[#77736F] dark:text-[#CBD5E1]">
                                                     <MapPin
                                                         size={15}
                                                         className="shrink-0 text-[#F06A3C]"
@@ -224,20 +224,20 @@ const FeaturedStudios = () => {
                                                 {/* Title */}
                                                 <Link
                                                     href={`/studios/${studio._id}`}
-                                                    className="mt-3 line-clamp-1 text-lg font-bold text-[#242321] transition hover:text-[#F06A3C]"
+                                                    className="mt-3 line-clamp-1 text-lg font-bold text-[#242321] transition hover:text-[#F06A3C] dark:text-[#F9FAFB] dark:hover:text-[#F06A3C]"
                                                 >
                                                     {studio.title}
                                                 </Link>
 
                                                 {/* Price & Button */}
-                                                <div className="mt-auto flex items-center justify-between gap-3 border-t border-[#F0EBE6] pt-4">
+                                                <div className="mt-auto flex items-center justify-between gap-3 border-t border-[#F0EBE6] pt-4 dark:border-[#374151]">
 
                                                     <div>
                                                         <span className="text-xl font-bold text-[#F06A3C]">
                                                             ${studio.hourlyRate}
                                                         </span>
 
-                                                        <span className="ml-1 text-xs text-[#77736F]">
+                                                        <span className="ml-1 text-xs text-[#77736F] dark:text-[#CBD5E1]">
                                                             / hr
                                                         </span>
                                                     </div>
@@ -265,12 +265,12 @@ const FeaturedStudios = () => {
                     <div className="mt-8 flex items-center gap-5">
 
                         {/* Current Slide */}
-                        <span className="min-w-10 text-sm font-semibold text-[#242321]">
+                        <span className="min-w-10 text-sm font-semibold text-[#242321] dark:text-[#F9FAFB]">
                             {current + 1} / {total || 1}
                         </span>
 
                         {/* Progress Bar */}
-                        <div className="h-1 flex-1 overflow-hidden rounded-full bg-[#EAE5DF]">
+                        <div className="h-1 flex-1 overflow-hidden rounded-full bg-[#EAE5DF] dark:bg-[#374151]">
                             <div
                                 className="h-full rounded-full bg-[#F06A3C] transition-all duration-300"
                                 style={{
@@ -290,7 +290,7 @@ const FeaturedStudios = () => {
                                 aria-label="Previous studio"
                                 onClick={() => api?.scrollPrev()}
                                 disabled={!api?.canScrollPrev()}
-                                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAE5DF] bg-white text-[#242321] transition hover:border-[#F06A3C] hover:text-[#F06A3C] disabled:cursor-not-allowed disabled:opacity-40"
+                                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAE5DF] bg-white text-[#242321] transition hover:border-[#F06A3C] hover:text-[#F06A3C] disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#374151] dark:bg-[#1F2937] dark:text-[#F9FAFB] dark:hover:border-[#F06A3C] dark:hover:text-[#F06A3C]"
                             >
                                 <ChevronLeft size={18} />
                             </button>
@@ -300,7 +300,7 @@ const FeaturedStudios = () => {
                                 aria-label="Next studio"
                                 onClick={() => api?.scrollNext()}
                                 disabled={!api?.canScrollNext()}
-                                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAE5DF] bg-white text-[#242321] transition hover:border-[#F06A3C] hover:text-[#F06A3C] disabled:cursor-not-allowed disabled:opacity-40"
+                                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAE5DF] bg-white text-[#242321] transition hover:border-[#F06A3C] hover:text-[#F06A3C] disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#374151] dark:bg-[#1F2937] dark:text-[#F9FAFB] dark:hover:border-[#F06A3C] dark:hover:text-[#F06A3C]"
                             >
                                 <ChevronRight size={18} />
                             </button>

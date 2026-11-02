@@ -99,11 +99,11 @@ const StudioDetails = ({ studio }: Props) => {
         : amenities.slice(0, 8);
 
     return (
-        <main className="min-h-screen bg-[#FAF8F5] pb-20">
+        <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#111827] pb-20">
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
                 {/* Breadcrumb */}
-                <div className="mb-6 flex items-center gap-2 text-sm text-[#77736F]">
+                <div className="mb-6 flex items-center gap-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                     <Link href="/" className="transition hover:text-[#F06A3C]">
                         Home
                     </Link>
@@ -116,7 +116,7 @@ const StudioDetails = ({ studio }: Props) => {
 
                     <ChevronRight size={14} />
 
-                    <span className="truncate text-[#242321]">
+                    <span className="truncate text-[#242321] dark:text-[#F9FAFB]">
                         {studio.title}
                     </span>
                 </div>
@@ -128,18 +128,18 @@ const StudioDetails = ({ studio }: Props) => {
                             {studio.category}
                         </span>
 
-                        <h1 className="text-3xl font-bold tracking-tight text-[#242321] sm:text-4xl">
+                        <h1 className="text-3xl font-bold tracking-tight text-[#242321] dark:text-[#F9FAFB] sm:text-4xl">
                             {studio.title}
                         </h1>
 
-                        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[#77736F]">
+                        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                             <span className="flex items-center gap-1.5">
                                 <MapPin size={16} />
                                 {studio.location}
                             </span>
 
                             {studio.rating ? (
-                                <span className="flex items-center gap-1.5 text-[#242321]">
+                                <span className="flex items-center gap-1.5 text-[#242321] dark:text-[#F9FAFB]">
                                     <Star
                                         size={16}
                                         className="fill-[#F59E0B] text-[#F59E0B]"
@@ -147,12 +147,12 @@ const StudioDetails = ({ studio }: Props) => {
 
                                     {studio.rating}
 
-                                    <span className="text-[#77736F]">
+                                    <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                         ({studio.totalReviews || 0} reviews)
                                     </span>
                                 </span>
                             ) : (
-                                <span className="text-[#77736F]">
+                                <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                     New listing
                                 </span>
                             )}
@@ -169,7 +169,7 @@ const StudioDetails = ({ studio }: Props) => {
                         onClick={() => setIsSaved(!isSaved)}
                         className={`flex items-center gap-2 self-start rounded-full border px-4 py-2.5 text-sm font-medium transition sm:self-auto ${isSaved
                             ? "border-[#F06A3C] bg-[#F06A3C]/10 text-[#F06A3C]"
-                            : "border-[#EAE5DF] text-[#242321] hover:border-[#F06A3C] hover:text-[#F06A3C]"
+                            : "border-[#EAE5DF] dark:border-[#374151] text-[#242321] dark:text-[#F9FAFB] hover:border-[#F06A3C] hover:text-[#F06A3C]"
                             }`}
                     >
                         <Heart
@@ -186,7 +186,7 @@ const StudioDetails = ({ studio }: Props) => {
                         <>
                             <div className="grid gap-3 lg:grid-cols-[2.8fr_0.7fr]">
                                 {/* Main Image */}
-                                <div className="group relative h-[300px] overflow-hidden rounded-2xl bg-[#EAE5DF] sm:h-[460px]">
+                                <div className="group relative h-[300px] overflow-hidden rounded-2xl bg-[#EAE5DF] dark:bg-[#374151] sm:h-[460px]">
                                     <Image
                                         src={images[activeImage]}
                                         alt={studio.title}
@@ -201,7 +201,7 @@ const StudioDetails = ({ studio }: Props) => {
                                             <button
                                                 onClick={previousImage}
                                                 aria-label="Previous image"
-                                                className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[#242321] shadow-md transition hover:bg-white"
+                                                className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[#242321] dark:bg-[#1F2937]/90 dark:text-[#F9FAFB] shadow-md transition hover:bg-white dark:hover:bg-[#374151]"
                                             >
                                                 <ArrowLeft size={19} />
                                             </button>
@@ -209,7 +209,7 @@ const StudioDetails = ({ studio }: Props) => {
                                             <button
                                                 onClick={nextImage}
                                                 aria-label="Next image"
-                                                className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[#242321] shadow-md transition hover:bg-white"
+                                                className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[#242321] dark:bg-[#1F2937]/90 dark:text-[#F9FAFB] shadow-md transition hover:bg-white dark:hover:bg-[#374151]"
                                             >
                                                 <ArrowRight size={19} />
                                             </button>
@@ -227,8 +227,8 @@ const StudioDetails = ({ studio }: Props) => {
                                         <button
                                             key={image + index}
                                             onClick={() => setActiveImage(index)}
-                                            className={`group relative h-[110px] overflow-hidden rounded-xl bg-[#EAE5DF] sm:h-[170px] lg:h-full ${activeImage === index
-                                                ? "ring-2 ring-[#F06A3C] ring-offset-2"
+                                            className={`group relative h-[110px] overflow-hidden rounded-xl bg-[#EAE5DF] dark:bg-[#374151] sm:h-[170px] lg:h-full ${activeImage === index
+                                                ? "ring-2 ring-[#F06A3C] ring-offset-2 dark:ring-offset-[#111827]"
                                                 : ""
                                                 }`}
                                         >
@@ -252,7 +252,7 @@ const StudioDetails = ({ studio }: Props) => {
                                             key={image + index}
                                             onClick={() => setActiveImage(index)}
                                             className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition ${activeImage === index
-                                                ? "ring-2 ring-[#F06A3C] ring-offset-1"
+                                                ? "ring-2 ring-[#F06A3C] ring-offset-1 dark:ring-offset-[#111827]"
                                                 : "opacity-70 hover:opacity-100"
                                                 }`}
                                         >
@@ -269,7 +269,7 @@ const StudioDetails = ({ studio }: Props) => {
                             )}
                         </>
                     ) : (
-                        <div className="flex h-[350px] items-center justify-center rounded-2xl bg-[#EAE5DF] text-[#77736F]">
+                        <div className="flex h-[350px] items-center justify-center rounded-2xl bg-[#EAE5DF] dark:bg-[#374151] text-[#77736F] dark:text-[#CBD5E1]">
                             No studio images available
                         </div>
                     )}
@@ -283,68 +283,68 @@ const StudioDetails = ({ studio }: Props) => {
 
                         {/* Overview */}
                         <section>
-                            <h2 className="text-xl font-bold text-[#242321]">
+                            <h2 className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                                 About This Workspace
                             </h2>
 
-                            <p className="mt-4 text-[15px] leading-7 text-[#77736F]">
+                            <p className="mt-4 text-[15px] leading-7 text-[#77736F] dark:text-[#CBD5E1]">
                                 {studio.description}
                             </p>
                         </section>
 
-                        <div className="h-px bg-[#EAE5DF]" />
+                        <div className="h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                         {/* Specifications */}
                         <section>
-                            <h2 className="text-xl font-bold text-[#242321]">
+                            <h2 className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                                 Workspace Specifications
                             </h2>
 
                             <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3">
 
-                                <div className="rounded-xl border border-[#EAE5DF] bg-white p-4">
+                                <div className="rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-4">
                                     <Users size={20} className="text-[#F06A3C]" />
 
-                                    <p className="mt-3 text-xs text-[#77736F]">
+                                    <p className="mt-3 text-xs text-[#77736F] dark:text-[#CBD5E1]">
                                         Max Capacity
                                     </p>
 
-                                    <p className="mt-1 font-semibold text-[#242321]">
+                                    <p className="mt-1 font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                         {studio.maxCapacity} People
                                     </p>
                                 </div>
 
-                                <div className="rounded-xl border border-[#EAE5DF] bg-white p-4">
+                                <div className="rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-4">
                                     <Clock size={20} className="text-[#F06A3C]" />
 
-                                    <p className="mt-3 text-xs text-[#77736F]">
+                                    <p className="mt-3 text-xs text-[#77736F] dark:text-[#CBD5E1]">
                                         Booking Type
                                     </p>
 
-                                    <p className="mt-1 font-semibold text-[#242321]">
+                                    <p className="mt-1 font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                         Hourly Booking
                                     </p>
                                 </div>
 
-                                <div className="rounded-xl border border-[#EAE5DF] bg-white p-4">
+                                <div className="rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-4">
                                     <ShieldCheck size={20} className="text-[#F06A3C]" />
 
-                                    <p className="mt-3 text-xs text-[#77736F]">
+                                    <p className="mt-3 text-xs text-[#77736F] dark:text-[#CBD5E1]">
                                         Security Deposit
                                     </p>
 
-                                    <p className="mt-1 font-semibold text-[#242321]">
+                                    <p className="mt-1 font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                         ${studio.securityDeposit}
                                     </p>
                                 </div>
                             </div>
                         </section>
 
-                        <div className="h-px bg-[#EAE5DF]" />
+                        <div className="h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                         {/* Amenities */}
                         <section>
-                            <h2 className="text-xl font-bold text-[#242321]">
+                            <h2 className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                                 What This Studio Offers
                             </h2>
 
@@ -357,7 +357,7 @@ const StudioDetails = ({ studio }: Props) => {
                                             return (
                                                 <div
                                                     key={amenity}
-                                                    className="flex items-center gap-3 text-sm text-[#55514D]"
+                                                    className="flex items-center gap-3 text-sm text-[#55514D] dark:text-[#CBD5E1]"
                                                 >
                                                     <Icon
                                                         size={19}
@@ -384,35 +384,35 @@ const StudioDetails = ({ studio }: Props) => {
                                     )}
                                 </>
                             ) : (
-                                <p className="mt-4 text-sm text-[#77736F]">
+                                <p className="mt-4 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                     No amenities information available.
                                 </p>
                             )}
                         </section>
 
-                        <div className="h-px bg-[#EAE5DF]" />
+                        <div className="h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                         {/* Host Details */}
                         <section>
-                            <h2 className="text-xl font-bold text-[#242321]">
+                            <h2 className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                                 Meet Your Host
                             </h2>
 
-                            <div className="mt-5 flex items-center gap-4 rounded-xl border border-[#EAE5DF] bg-white p-5">
+                            <div className="mt-5 flex items-center gap-4 rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5">
                                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#F06A3C]/10 text-xl font-bold text-[#F06A3C]">
                                     {studio.ownerName?.charAt(0)?.toUpperCase() || "H"}
                                 </div>
 
                                 <div className="min-w-0">
-                                    <h3 className="font-semibold text-[#242321]">
+                                    <h3 className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                         {studio.ownerName || "Studio Host"}
                                     </h3>
 
-                                    <p className="mt-1 truncate text-sm text-[#77736F]">
+                                    <p className="mt-1 truncate text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                         {studio.ownerEmail}
                                     </p>
 
-                                    <span className="mt-2 inline-flex items-center gap-1 text-xs text-green-600">
+                                    <span className="mt-2 inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
                                         <ShieldCheck size={14} />
                                         Workspace Host
                                     </span>
@@ -420,49 +420,49 @@ const StudioDetails = ({ studio }: Props) => {
                             </div>
                         </section>
 
-                        <div className="h-px bg-[#EAE5DF]" />
+                        <div className="h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                         {/* Reviews */}
                         <section>
                             <div className="flex items-center justify-between">
-                                <h2 className="text-xl font-bold text-[#242321]">
+                                <h2 className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                                     Guest Reviews
                                 </h2>
 
-                                <span className="text-sm text-[#77736F]">
+                                <span className="text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                     {studio.totalReviews || 0} reviews
                                 </span>
                             </div>
 
                             {studio.totalReviews ? (
-                                <div className="mt-5 rounded-xl border border-[#EAE5DF] bg-white p-5">
+                                <div className="mt-5 rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5">
                                     <div className="flex items-center gap-2">
                                         <Star
                                             size={20}
                                             className="fill-[#F59E0B] text-[#F59E0B]"
                                         />
 
-                                        <span className="text-xl font-bold text-[#242321]">
+                                        <span className="text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                                             {studio.rating}
                                         </span>
                                     </div>
 
-                                    <p className="mt-2 text-sm text-[#77736F]">
+                                    <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                         Based on {studio.totalReviews} guest reviews.
                                     </p>
                                 </div>
                             ) : (
-                                <div className="mt-5 rounded-xl border border-dashed border-[#EAE5DF] bg-white p-8 text-center">
+                                <div className="mt-5 rounded-xl border border-dashed border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-8 text-center">
                                     <Star
                                         size={25}
-                                        className="mx-auto text-[#C8C1B9]"
+                                        className="mx-auto text-[#C8C1B9] dark:text-[#94A3B8]"
                                     />
 
-                                    <p className="mt-3 font-medium text-[#242321]">
+                                    <p className="mt-3 font-medium text-[#242321] dark:text-[#F9FAFB]">
                                         No reviews yet
                                     </p>
 
-                                    <p className="mt-1 text-sm text-[#77736F]">
+                                    <p className="mt-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                         Be the first to share your experience!
                                     </p>
                                 </div>

@@ -93,23 +93,23 @@ const RegisterForm = () => {
         };
 
     const inputClass =
-        "w-full rounded-xl border border-[#EAE5DF] bg-white py-3 pl-11 pr-4 text-sm text-[#242321] outline-none transition placeholder:text-[#A7A19A] focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10";
+        "w-full rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] py-3 pl-11 pr-4 text-sm text-[#242321] dark:text-[#F9FAFB] outline-none transition placeholder:text-[#A7A19A] dark:placeholder:text-[#9CA3AF] focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10";
 
     return (
         <div className="w-full max-w-md">
             <div className="mb-8 text-center">
                 <Link
                     href="/"
-                    className="inline-block text-3xl font-extrabold tracking-tight text-[#242321]"
+                    className="inline-block text-3xl font-extrabold tracking-tight text-[#242321] dark:text-[#F9FAFB]"
                 >
                     Kreo<span className="text-[#F06A3C]">vix</span>
                 </Link>
 
-                <h1 className="mt-6 text-2xl font-bold text-[#242321]">
+                <h1 className="mt-6 text-2xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                     Create your account
                 </h1>
 
-                <p className="mt-2 text-sm text-[#77736F]">
+                <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                     Join Kreovix and discover creative spaces.
                 </p>
             </div>
@@ -118,14 +118,14 @@ const RegisterForm = () => {
                 <div>
                     <label
                         htmlFor="name"
-                        className="mb-2 block text-sm font-semibold text-[#242321]"
+                        className="mb-2 block text-sm font-semibold text-[#242321] dark:text-[#F9FAFB]"
                     >
                         Full Name
                     </label>
 
                     <div className="relative">
                         <UserRound
-                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A]"
+                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A] dark:text-[#9CA3AF]"
                             size={18}
                         />
 
@@ -146,14 +146,14 @@ const RegisterForm = () => {
                 <div>
                     <label
                         htmlFor="email"
-                        className="mb-2 block text-sm font-semibold text-[#242321]"
+                        className="mb-2 block text-sm font-semibold text-[#242321] dark:text-[#F9FAFB]"
                     >
                         Email Address
                     </label>
 
                     <div className="relative">
                         <Mail
-                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A]"
+                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A] dark:text-[#9CA3AF]"
                             size={18}
                         />
 
@@ -174,17 +174,17 @@ const RegisterForm = () => {
                 <div>
                     <label
                         htmlFor="photoURL"
-                        className="mb-2 block text-sm font-semibold text-[#242321]"
+                        className="mb-2 block text-sm font-semibold text-[#242321] dark:text-[#F9FAFB]"
                     >
                         Photo URL{" "}
-                        <span className="font-normal text-[#A7A19A]">
+                        <span className="font-normal text-[#A7A19A] dark:text-[#9CA3AF]">
                             (Optional)
                         </span>
                     </label>
 
                     <div className="relative">
                         <Image
-                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A]"
+                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A] dark:text-[#9CA3AF]"
                             size={18}
                         />
 
@@ -203,14 +203,14 @@ const RegisterForm = () => {
                 <div>
                     <label
                         htmlFor="password"
-                        className="mb-2 block text-sm font-semibold text-[#242321]"
+                        className="mb-2 block text-sm font-semibold text-[#242321] dark:text-[#F9FAFB]"
                     >
                         Password
                     </label>
 
                     <div className="relative">
                         <Lock
-                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A]"
+                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A] dark:text-[#9CA3AF]"
                             size={18}
                         />
 
@@ -233,7 +233,7 @@ const RegisterForm = () => {
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A] hover:text-[#242321]"
+                            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#A7A19A] dark:text-[#9CA3AF] hover:text-[#242321] dark:hover:text-white"
                             aria-label={
                                 showPassword ? "Hide password" : "Show password"
                             }
@@ -248,15 +248,15 @@ const RegisterForm = () => {
 
                     {/* Real-time Password Requirements */}
                     <div className="mt-2 space-y-1.5">
-                        <p className="text-xs text-[#77736F]">
+                        <p className="text-xs text-[#77736F] dark:text-[#CBD5E1]">
                             Password must contain:
                         </p>
 
                         <p
                             className={`flex items-center gap-2 text-xs ${
                                 passwordChecks.minLength
-                                    ? "text-green-600"
-                                    : "text-[#99938C]"
+                                    ? "text-green-600 dark:text-green-400"
+                                    : "text-[#99938C] dark:text-[#9CA3AF]"
                             }`}
                         >
                             <span>
@@ -268,8 +268,8 @@ const RegisterForm = () => {
                         <p
                             className={`flex items-center gap-2 text-xs ${
                                 passwordChecks.uppercase
-                                    ? "text-green-600"
-                                    : "text-[#99938C]"
+                                    ? "text-green-600 dark:text-green-400"
+                                    : "text-[#99938C] dark:text-[#9CA3AF]"
                             }`}
                         >
                             <span>
@@ -281,8 +281,8 @@ const RegisterForm = () => {
                         <p
                             className={`flex items-center gap-2 text-xs ${
                                 passwordChecks.lowercase
-                                    ? "text-green-600"
-                                    : "text-[#99938C]"
+                                    ? "text-green-600 dark:text-green-400"
+                                    : "text-[#99938C] dark:text-[#9CA3AF]"
                             }`}
                         >
                             <span>
@@ -296,7 +296,7 @@ const RegisterForm = () => {
                 {error && (
                     <p
                         role="alert"
-                        className="rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-600"
+                        className="rounded-lg border border-red-200 dark:border-red-900/60 bg-red-50 dark:bg-red-950/40 px-3 py-2.5 text-sm text-red-600 dark:text-red-400"
                     >
                         {error}
                     </p>
@@ -313,11 +313,11 @@ const RegisterForm = () => {
 
             <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-[#EAE5DF]" />
+                    <div className="w-full border-t border-[#EAE5DF] dark:border-[#374151]" />
                 </div>
 
                 <div className="relative flex justify-center">
-                    <span className="bg-[#FAF8F5] px-3 text-xs text-[#A7A19A]">
+                    <span className="bg-[#FAF8F5] dark:bg-[#111827] px-3 text-xs text-[#A7A19A] dark:text-[#9CA3AF]">
                         OR CONTINUE WITH
                     </span>
                 </div>
@@ -327,7 +327,7 @@ const RegisterForm = () => {
                 type="button"
                 onClick={handleGoogleRegister}
                 disabled={isLoading}
-                className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#EAE5DF] bg-white py-3 text-sm font-semibold text-[#242321] transition hover:bg-[#F5F1EB] disabled:opacity-60"
+                className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] py-3 text-sm font-semibold text-[#242321] dark:text-[#F9FAFB] transition hover:bg-[#F5F1EB] dark:hover:bg-[#374151] disabled:opacity-60"
             >
                 <svg
                     viewBox="0 0 48 48"
@@ -358,7 +358,7 @@ const RegisterForm = () => {
                 Continue with Google
             </button>
 
-            <p className="mt-7 text-center text-sm text-[#77736F]">
+            <p className="mt-7 text-center text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Already have an account?{" "}
                 <Link
                     href="/login"

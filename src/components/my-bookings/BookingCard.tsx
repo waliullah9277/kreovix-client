@@ -231,48 +231,48 @@ const BookingCard = ({ studio }: BookingCardProps) => {
         <>
             {/* Booking Card */}
             <aside className="lg:sticky lg:top-24 lg:h-fit">
-                <div className="rounded-2xl border border-[#EAE5DF] bg-white p-6 shadow-sm">
+                <div className="rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-6 shadow-sm">
                     {/* Hourly Rate */}
                     <div className="flex items-end gap-1">
-                        <span className="text-3xl font-bold text-[#242321]">
+                        <span className="text-3xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                             ${studio.hourlyRate}
                         </span>
 
-                        <span className="pb-1 text-sm text-[#77736F]">
+                        <span className="pb-1 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                             / hour
                         </span>
                     </div>
 
-                    <div className="my-5 h-px bg-[#EAE5DF]" />
+                    <div className="my-5 h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                     {/* Studio Information */}
                     <div className="space-y-4 text-sm">
                         <div className="flex items-center justify-between">
-                            <span className="text-[#77736F]">
+                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                 Hourly Rate
                             </span>
 
-                            <span className="font-semibold text-[#242321]">
+                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                 ${studio.hourlyRate}
                             </span>
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <span className="text-[#77736F]">
+                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                 Security Deposit
                             </span>
 
-                            <span className="font-semibold text-[#242321]">
+                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                 ${studio.securityDeposit}
                             </span>
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <span className="text-[#77736F]">
+                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                 Max Guests
                             </span>
 
-                            <span className="font-semibold text-[#242321]">
+                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                 {studio.maxCapacity} People
                             </span>
                         </div>
@@ -292,14 +292,14 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                             : "Book Workspace Now"}
                     </button>
 
-                    <p className="mt-4 text-center text-xs text-[#77736F]">
+                    <p className="mt-4 text-center text-xs text-[#77736F] dark:text-[#CBD5E1]">
                         You won&apos;t be charged yet.
                     </p>
 
-                    <div className="mt-5 flex items-center justify-center gap-2 text-xs text-[#77736F]">
+                    <div className="mt-5 flex items-center justify-center gap-2 text-xs text-[#77736F] dark:text-[#CBD5E1]">
                         <ShieldCheck
                             size={15}
-                            className="text-green-600"
+                            className="text-green-600 dark:text-green-400"
                         />
                         Secure workspace booking
                     </div>
@@ -317,21 +317,21 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                         aria-modal="true"
                         aria-labelledby="booking-modal-title"
                         onClick={(e) => e.stopPropagation()}
-                        className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-[#EAE5DF] bg-[#FAF8F5] p-5 shadow-2xl sm:p-7"
+                        className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-[#EAE5DF] dark:border-[#374151] bg-[#FAF8F5] dark:bg-[#111827] p-5 shadow-2xl sm:p-7"
                     >
                         {/* Modal Header */}
                         <div className="flex items-start justify-between gap-4">
                             <div>
                                 <h2
                                     id="booking-modal-title"
-                                    className="text-2xl font-bold text-[#242321]"
+                                    className="text-2xl font-bold text-[#242321] dark:text-[#F9FAFB]"
                                 >
                                     {showSummary
                                         ? "Booking Summary"
                                         : "Book This Workspace"}
                                 </h2>
 
-                                <p className="mt-2 text-sm text-[#77736F]">
+                                <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                                     {studio.title}
                                 </p>
                             </div>
@@ -340,19 +340,19 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                 type="button"
                                 onClick={closeBooking}
                                 aria-label="Close booking popup"
-                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#EAE5DF] bg-white text-[#77736F] transition hover:bg-[#FCE4DB] hover:text-[#F06A3C]"
+                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] text-[#77736F] dark:text-[#CBD5E1] transition hover:bg-[#FCE4DB] dark:hover:bg-[#3B2B26] hover:text-[#F06A3C]"
                             >
                                 <X size={19} />
                             </button>
                         </div>
 
-                        <div className="my-6 h-px bg-[#EAE5DF]" />
+                        <div className="my-6 h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                         {!showSummary ? (
                             <>
                                 {/* Booking Date */}
-                                <div className="rounded-xl border border-[#EAE5DF] bg-white p-5">
-                                    <h3 className="mb-5 flex items-center gap-2 text-base font-bold text-[#242321]">
+                                <div className="rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5">
+                                    <h3 className="mb-5 flex items-center gap-2 text-base font-bold text-[#242321] dark:text-[#F9FAFB]">
                                         <CalendarDays
                                             size={19}
                                             className="text-[#F06A3C]"
@@ -362,7 +362,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
 
                                     <label
                                         htmlFor="bookingDate"
-                                        className="mb-2 block text-sm font-semibold text-[#34312E]"
+                                        className="mb-2 block text-sm font-semibold text-[#34312E] dark:text-[#F9FAFB]"
                                     >
                                         Booking Date
                                     </label>
@@ -375,13 +375,13 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                         onChange={(e) =>
                                             setBookingDate(e.target.value)
                                         }
-                                        className="w-full rounded-xl border border-[#EAE5DF] bg-white px-4 py-3 text-sm text-[#242321] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
+                                        className="w-full rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-4 py-3 text-sm text-[#242321] dark:text-[#F9FAFB] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
                                     />
                                 </div>
 
                                 {/* Time Selection */}
-                                <div className="mt-5 rounded-xl border border-[#EAE5DF] bg-white p-5">
-                                    <h3 className="mb-5 flex items-center gap-2 text-base font-bold text-[#242321]">
+                                <div className="mt-5 rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5">
+                                    <h3 className="mb-5 flex items-center gap-2 text-base font-bold text-[#242321] dark:text-[#F9FAFB]">
                                         <Clock3
                                             size={19}
                                             className="text-[#F06A3C]"
@@ -394,7 +394,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                         <div>
                                             <label
                                                 htmlFor="startTime"
-                                                className="mb-2 block text-sm font-semibold text-[#34312E]"
+                                                className="mb-2 block text-sm font-semibold text-[#34312E] dark:text-[#F9FAFB]"
                                             >
                                                 Start Time
                                             </label>
@@ -406,7 +406,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                                 onChange={(e) =>
                                                     setStartTime(e.target.value)
                                                 }
-                                                className="w-full rounded-xl border border-[#EAE5DF] bg-white px-4 py-3 text-sm text-[#242321] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
+                                                className="w-full rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-4 py-3 text-sm text-[#242321] dark:text-[#F9FAFB] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
                                             />
                                         </div>
 
@@ -414,7 +414,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                         <div>
                                             <label
                                                 htmlFor="endTime"
-                                                className="mb-2 block text-sm font-semibold text-[#34312E]"
+                                                className="mb-2 block text-sm font-semibold text-[#34312E] dark:text-[#F9FAFB]"
                                             >
                                                 End Time
                                             </label>
@@ -426,86 +426,86 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                                 onChange={(e) =>
                                                     setEndTime(e.target.value)
                                                 }
-                                                className="w-full rounded-xl border border-[#EAE5DF] bg-white px-4 py-3 text-sm text-[#242321] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
+                                                className="w-full rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-4 py-3 text-sm text-[#242321] dark:text-[#F9FAFB] outline-none transition focus:border-[#F06A3C] focus:ring-2 focus:ring-[#F06A3C]/10"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Duration */}
-                                    <div className="mt-5 flex items-center justify-between rounded-xl bg-[#FFF4EF] px-4 py-3">
-                                        <span className="text-sm font-medium text-[#77736F]">
+                                    <div className="mt-5 flex items-center justify-between rounded-xl bg-[#FFF4EF] dark:bg-[#3B2B26] px-4 py-3">
+                                        <span className="text-sm font-medium text-[#77736F] dark:text-[#CBD5E1]">
                                             Booking Duration
                                         </span>
 
-                                        <span className="font-bold text-[#D9562D]">
+                                        <span className="font-bold text-[#D9562D] dark:text-[#FB916E]">
                                             {formatDuration(durationMinutes)}
                                         </span>
                                     </div>
 
                                     {!isValidTime && (
-                                        <p className="mt-3 text-xs text-red-500">
+                                        <p className="mt-3 text-xs text-red-500 dark:text-red-400">
                                             End time must be later than start time.
                                         </p>
                                     )}
 
                                     {isPastTime && (
-                                        <p className="mt-3 text-xs text-red-500">
+                                        <p className="mt-3 text-xs text-red-500 dark:text-red-400">
                                             Please select a future start time.
                                         </p>
                                     )}
                                 </div>
 
                                 {/* Price Breakdown */}
-                                <div className="mt-5 rounded-xl border border-[#EAE5DF] bg-white p-5">
-                                    <h3 className="mb-5 text-base font-bold text-[#242321]">
+                                <div className="mt-5 rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5">
+                                    <h3 className="mb-5 text-base font-bold text-[#242321] dark:text-[#F9FAFB]">
                                         Price Breakdown
                                     </h3>
 
                                     <div className="space-y-4 text-sm">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Hourly Rate
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 ${formatPrice(hourlyRate)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Duration
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 {formatDuration(durationMinutes)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Studio Rental
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 ${formatPrice(rentalPrice)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Security Deposit
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 ${formatPrice(securityDeposit)}
                                             </span>
                                         </div>
 
-                                        <div className="h-px bg-[#EAE5DF]" />
+                                        <div className="h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-base font-bold text-[#242321]">
+                                            <span className="text-base font-bold text-[#242321] dark:text-[#F9FAFB]">
                                                 Estimated Total
                                             </span>
 
@@ -530,93 +530,93 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                         ) : (
                             <>
                                 {/* Booking Summary */}
-                                <div className="rounded-xl border border-[#EAE5DF] bg-white p-5">
+                                <div className="rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] p-5">
                                     <div className="mb-5 flex items-center gap-3">
                                         <CheckCircle2
                                             size={25}
-                                            className="text-green-600"
+                                            className="text-green-600 dark:text-green-400"
                                         />
 
-                                        <h3 className="text-lg font-bold text-[#242321]">
+                                        <h3 className="text-lg font-bold text-[#242321] dark:text-[#F9FAFB]">
                                             Review Your Booking Details
                                         </h3>
                                     </div>
 
                                     <div className="space-y-4 text-sm">
                                         <div className="flex items-center justify-between gap-4">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Studio
                                             </span>
 
-                                            <span className="text-right font-semibold text-[#242321]">
+                                            <span className="text-right font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 {studio.title}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Booking Date
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 {bookingDate}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Start Time
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 {formatTime(startTime)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 End Time
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 {formatTime(endTime)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Duration
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 {formatDuration(durationMinutes)}
                                             </span>
                                         </div>
 
-                                        <div className="h-px bg-[#EAE5DF]" />
+                                        <div className="h-px bg-[#EAE5DF] dark:bg-[#374151]" />
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Studio Rental
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 ${formatPrice(rentalPrice)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[#77736F]">
+                                            <span className="text-[#77736F] dark:text-[#CBD5E1]">
                                                 Security Deposit
                                             </span>
 
-                                            <span className="font-semibold text-[#242321]">
+                                            <span className="font-semibold text-[#242321] dark:text-[#F9FAFB]">
                                                 ${formatPrice(securityDeposit)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
-                                            <span className="text-base font-bold text-[#242321]">
+                                            <span className="text-base font-bold text-[#242321] dark:text-[#F9FAFB]">
                                                 Estimated Total
                                             </span>
 
@@ -633,7 +633,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                         type="button"
                                         onClick={() => setShowSummary(false)}
                                         disabled={isSubmitting}
-                                        className="flex-1 rounded-xl border border-[#EAE5DF] bg-white px-5 py-3 text-sm font-semibold text-[#77736F] transition hover:bg-[#F5F2EE] disabled:opacity-60"
+                                        className="flex-1 rounded-xl border border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] px-5 py-3 text-sm font-semibold text-[#77736F] dark:text-[#CBD5E1] transition hover:bg-[#F5F2EE] dark:hover:bg-[#374151] disabled:opacity-60"
                                     >
                                         Edit Booking
                                     </button>
@@ -650,7 +650,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                                     </button>
                                 </div>
 
-                                <p className="mt-4 text-center text-xs text-[#77736F]">
+                                <p className="mt-4 text-center text-xs text-[#77736F] dark:text-[#CBD5E1]">
                                     This is a booking preview. No reservation
                                     has been submitted yet.
                                 </p>

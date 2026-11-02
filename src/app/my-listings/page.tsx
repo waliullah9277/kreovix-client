@@ -47,7 +47,7 @@ const MyListingsPage = () => {
     if (isPending || (session?.user.email && isLoading)) {
         return (
             <div className="flex min-h-[50vh] items-center justify-center">
-                <p className="text-[#77736F]">Loading your listings...</p>
+                <p className="text-[#77736F] dark:text-[#CBD5E1]">Loading your listings...</p>
             </div>
         );
     }
@@ -55,7 +55,7 @@ const MyListingsPage = () => {
     if (!session) {
         return (
             <div className="flex min-h-[50vh] items-center justify-center">
-                <p className="text-[#77736F]">
+                <p className="text-[#77736F] dark:text-[#CBD5E1]">
                     Please login to view your listings.
                 </p>
             </div>

@@ -2,7 +2,7 @@ import { LoaderCircle } from "lucide-react";
 
 export default function Loading() {
     return (
-        <div className="flex min-h-[70vh] flex-col items-center justify-center bg-[#FAF8F5]">
+        <div className="flex min-h-[70vh] flex-col items-center justify-center bg-[#FAF8F5] dark:bg-[#111827]">
             <div className="relative flex h-20 w-20 items-center justify-center">
                 <div className="absolute inset-0 animate-ping rounded-full bg-[#F06A3C]/10" />
 
@@ -14,11 +14,11 @@ export default function Loading() {
                 </div>
             </div>
 
-            <h2 className="mt-6 text-xl font-bold text-[#242321]">
+            <h2 className="mt-6 text-xl font-bold text-[#242321] dark:text-[#F9FAFB]">
                 Kreovix
             </h2>
 
-            <p className="mt-2 text-sm text-[#77736F]">
+            <p className="mt-2 text-sm text-[#77736F] dark:text-[#CBD5E1]">
                 Preparing your creative space...
             </p>
         </div>
