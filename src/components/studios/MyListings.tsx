@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Studio } from "@/types/studio";
 import Link from "next/link";
-import { MapPin, Plus, Pencil, Trash2 } from "lucide-react";
+import { MapPin, Plus, Pencil, Trash2, Eye } from "lucide-react";
 import Image from "next/image";
 import EditMyListings from "./EditMyListings";
 import DeleteMyListings from "./DeleteMyListings";
@@ -134,13 +134,35 @@ const MyListings = ({ listings }: MyListingsProps) => {
                                 </div>
 
                                 {/* Actions */}
+                                {/* Actions */}
                                 <div className="flex items-center justify-end gap-2 border-t border-[#F0ECE6] pt-3 lg:justify-center lg:border-0 lg:pt-0">
-                                    <EditMyListings listings={item} />
 
+                                    {/* View Details */}
+                                    <Link
+                                        href={`/studios/${item._id}`}
+                                        title="View Studio Details"
+                                        aria-label={`View details of ${item.title}`}
+                                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 text-blue-600 transition-all duration-200 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
+                                    >
+                                        <Eye size={17} />
+                                    </Link>
+
+                                    {/* Update Studio */}
+                                    <Link
+                                        href={`/studios/edit/${item._id}`}
+                                        title="Update Studio"
+                                        aria-label={`Update ${item.title}`}
+                                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#F06A3C]/20 bg-[#FCE4DB]/40 text-[#D9562D] transition-all duration-200 hover:border-[#F06A3C] hover:bg-[#F06A3C] hover:text-white"
+                                    >
+                                        <Pencil size={16} />
+                                    </Link>
+
+                                    {/* Delete Studio */}
                                     <DeleteMyListings
                                         listings={item}
                                         onDeleted={handleListingDeleted}
                                     />
+
                                 </div>
                             </div>
                         ))}
