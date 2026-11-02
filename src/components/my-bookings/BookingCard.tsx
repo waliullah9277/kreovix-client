@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 interface Studio {
     _id: string;
@@ -45,6 +46,8 @@ const BookingCard = ({ studio }: BookingCardProps) => {
 
     const hourlyRate = Number(studio.hourlyRate) || 0;
     const securityDeposit = Number(studio.securityDeposit) || 0;
+
+    const router = useRouter();
 
     // Convert HH:mm into minutes
     const convertToMinutes = (time: string) => {
@@ -113,16 +116,7 @@ const BookingCard = ({ studio }: BookingCardProps) => {
 
     const user = session?.user;
 
-    if (!user) {
-        toast.error("Please login to book a studio.");
-        return;
-    }
-
     const handleBooking = () => {
-        if (!bookingDate) {
-            toast.error("Please select a booking date.");
-            return;
-        }
 
         if (isPastDate) {
             toast.error("You cannot book a past date.");
@@ -148,8 +142,13 @@ const BookingCard = ({ studio }: BookingCardProps) => {
     };
 
     const handleConfirmBooking = async () => {
+        if (!user) {
+            toast.error("Please login first!");
+            return;
+        }
+
         if (!isValidBooking) {
-            toast.error("Please select a valid booking date and time.");
+            toast.error("Please select a valid date and time.");
             return;
         }
 
@@ -170,10 +169,10 @@ const BookingCard = ({ studio }: BookingCardProps) => {
             userEmail: user.email,
         };
 
-        try {
-            setIsSubmitting(true);
+        setIsSubmitting(true);
 
-            const response = await fetch(
+        try {
+            const res = await fetch(
                 `${process.env.NEXT_PUBLIC_URL}/booking`,
                 {
                     method: "POST",
@@ -184,27 +183,17 @@ const BookingCard = ({ studio }: BookingCardProps) => {
                 }
             );
 
-            const result = await response.json();
+            const data = await res.json();
 
-            if (!response.ok) {
-                toast.error(
-                    result?.message || "Booking failed. Please try again."
-                );
-                return;
+            if (res.ok) {
+                toast.success(`${studio.title}Booking successful!`);
+                closeBooking();
+                router.push("/my-bookings");
+            } else {
+                toast.error(data.message || "Booking failed!");
             }
-
-            toast.success(`${studio.title} Booking created successfully!`);
-
-            closeBooking();
-
         } catch (error) {
-            console.error("Booking Error:", error);
-
-            toast.error(
-                error instanceof Error
-                    ? error.message
-                    : "Something went wrong while booking."
-            );
+            toast.error("Something went wrong!");
         } finally {
             setIsSubmitting(false);
         }

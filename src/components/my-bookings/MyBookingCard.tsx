@@ -177,7 +177,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                         <ArrowUpRight size={14} />
                     </Link>
 
-                    {/* TODO: Implement Cancel Booking API */}
+                    {/* Implement Cancel Booking API */}
                     {status === "pending" && (
                         <CancelBookingButton id={booking._id} />
                     )}
@@ -247,7 +247,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
                         <ArrowUpRight size={14} />
                     </Link>
 
-                    {/* TODO: Implement Cancel Booking API */}
+                    {/* Implement Cancel Booking API */}
                     {status === "pending" && (
                         <CancelBookingButton id={booking._id} />
                     )}
