@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { CalendarDays, ArrowUpRight } from "lucide-react";
 import MyBookingCard from "./MyBookingCard";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 export interface Booking {
     _id: string;
@@ -36,11 +37,16 @@ const MyBookings = async () => {
         redirect("/login");
     }
 
+    const token = await getTokenFromServer()
+
     // Fetch bookings using logged-in user's email
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/my-bookings/${encodeURIComponent(user.email)}`,
         {
             cache: "no-store",
+            headers:{
+                authorization: `Bearer ${token}`,
+            }
         }
     );
 
@@ -52,8 +58,8 @@ const MyBookings = async () => {
 
     const bookings: Booking[] = Array.isArray(data) ? data : [];
 
-    console.log("Logged-in Email:", user.email);
-    console.log("My Bookings:", bookings);
+    // console.log("Logged-in Email:", user.email);
+    // console.log("My Bookings:", bookings);
 
     return (
         <main className="min-h-screen bg-[#FAF8F5]">

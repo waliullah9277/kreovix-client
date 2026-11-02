@@ -8,6 +8,7 @@ import type { Studio } from "@/types/studio";
 import { authClient } from "@/lib/auth-client";
 
 import EditMyListings from "@/components/studios/EditMyListings";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface EditStudioPageProps {
     params: Promise<{ id: string }>;
@@ -41,11 +42,15 @@ export default function EditStudioPage({
             setLoading(true);
 
             try {
+                const token = await getTokenFromClient()
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_URL}/studios/${id}`,
                     {
                         cache: "no-store",
                         signal: controller.signal,
+                        headers:{
+                            authorization: `Bearer ${token}`,
+                        }
                     }
                 );
 

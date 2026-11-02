@@ -16,6 +16,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const CancelBookingButton = ({ id }: { id: string }) => {
     const router = useRouter();
@@ -25,11 +26,15 @@ const CancelBookingButton = ({ id }: { id: string }) => {
     const handleCancel = async () => {
         try {
             setLoading(true);
+            const token = await getTokenFromClient()
 
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_URL}/bookings/${id}/cancel`,
                 {
                     method: "PATCH",
+                    headers:{
+                        authorization: `Bearer ${token}`,
+                    }
                 }
             );
 

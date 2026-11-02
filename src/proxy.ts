@@ -27,7 +27,7 @@ export const config = {
     matcher: [
         "/add-new-studio",
         "/my-listings",
-        "/studios/edit/:path*",
+        "/studios/edit/:path",
         "/my-bookings",
         "/profile",
     ],

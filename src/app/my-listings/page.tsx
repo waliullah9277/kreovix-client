@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 import type { Studio } from "@/types/studio";
 import MyListings from "@/components/studios/MyListings";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const MyListingsPage = () => {
     const { data: session, isPending } = authClient.useSession();
@@ -18,8 +19,13 @@ const MyListingsPage = () => {
 
         const fetchMyListings = async () => {
             try {
+                const token = await getTokenFromClient()
                 const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_URL}/my-listings?email=${encodeURIComponent(session.user.email)}`
+                    `${process.env.NEXT_PUBLIC_URL}/my-listings?email=${encodeURIComponent(session.user.email)}`, {
+                        headers: {
+                            authorization: `Bearer ${token}`,
+                        }
+                    }
                 );
 
                 if (!res.ok) {

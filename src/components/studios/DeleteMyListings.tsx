@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Trash2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 
 
@@ -44,10 +45,14 @@ const DeleteMyListings = ({
         setIsDeleting(true);
 
         try {
+            const token = await getTokenFromClient()
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_URL}/my-listings/${listings._id}`,
                 {
                     method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    }
                 }
             );
 

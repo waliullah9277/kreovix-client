@@ -1,4 +1,3 @@
-
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
@@ -17,6 +16,7 @@ import {
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const categories = [
   "Photo Studios",
@@ -114,12 +114,19 @@ const AddNewStudio = () => {
     };
 
     try {
+      const token = await getTokenFromClient()
+      if (!token) {
+        toast.error("Authentication token not found!");
+        return;
+      }
+      console.log(token)
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/add-new-studio`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(studioData),
         }
@@ -236,9 +243,8 @@ const AddNewStudio = () => {
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className={`${inputClass} ${
-                    !formData.category ? "text-[#A5A09A]" : ""
-                  }`}
+                  className={`${inputClass} ${!formData.category ? "text-[#A5A09A]" : ""
+                    }`}
                   required
                 >
                   <option value="" disabled>
@@ -392,18 +398,16 @@ const AddNewStudio = () => {
                     key={amenity}
                     type="button"
                     onClick={() => toggleAmenity(amenity)}
-                    className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm font-medium transition ${
-                      isSelected
+                    className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm font-medium transition ${isSelected
                         ? "border-[#F06A3C] bg-[#FFF4EF] text-[#D9562D]"
                         : "border-[#EAE5DF] bg-white text-[#77736F] hover:border-[#F06A3C]/50"
-                    }`}
+                      }`}
                   >
                     <span
-                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${
-                        isSelected
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${isSelected
                           ? "border-[#F06A3C] bg-[#F06A3C] text-white"
                           : "border-[#D8D2CB]"
-                      }`}
+                        }`}
                     >
                       {isSelected && <Check size={13} />}
                     </span>
