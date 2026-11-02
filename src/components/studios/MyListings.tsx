@@ -1,15 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import type { Studio } from "@/types/studio";
 import Link from "next/link";
 import { MapPin, Plus, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
+import EditMyListings from "./EditMyListings";
+import DeleteMyListings from "./DeleteMyListings";
 
 interface MyListingsProps {
     listings: Studio[];
 }
 
 const MyListings = ({ listings }: MyListingsProps) => {
+
+    // Store listings in state
+    const [studioListings, setListings] = useState<Studio[]>(listings);
+
+    // Remove deleted listing from UI
+    const handleListingDeleted = (deletedId: string) => {
+        setListings((prev) =>
+            prev.filter((listing) => listing._id !== deletedId)
+        );
+    };
+
     return (
         <section className="min-h-screen bg-[#FAF8F5] px-4 py-12">
             <div className="mx-auto max-w-7xl">
@@ -39,13 +53,13 @@ const MyListings = ({ listings }: MyListingsProps) => {
                     <p className="text-sm text-[#77736F]">
                         Total Listings:{" "}
                         <span className="font-semibold text-[#242321]">
-                            {listings.length}
+                            {studioListings.length}
                         </span>
                     </p>
                 </div>
 
                 {/* Listings Table */}
-                {listings.length > 0 ? (
+                {studioListings.length > 0 ? (
                     <div className="space-y-3">
 
                         {/* Table Header */}
@@ -58,7 +72,7 @@ const MyListings = ({ listings }: MyListingsProps) => {
                         </div>
 
                         {/* Studio Rows */}
-                        {listings.map((item) => (
+                        {studioListings.map((item) => (
                             <div
                                 key={item._id}
                                 className="group grid gap-4 rounded-xl border border-[#EAE5DF] bg-white p-4 transition-all duration-200 hover:border-[#F06A3C]/40 hover:shadow-md sm:p-5 lg:grid-cols-[2.2fr_1fr_1fr_1.5fr_1fr] lg:items-center lg:gap-4"
@@ -121,21 +135,12 @@ const MyListings = ({ listings }: MyListingsProps) => {
 
                                 {/* Actions */}
                                 <div className="flex items-center justify-end gap-2 border-t border-[#F0ECE6] pt-3 lg:justify-center lg:border-0 lg:pt-0">
-                                    <Link
-                                        href={`/update-studio/${item._id}`}
-                                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#F06A3C]/20 bg-[#FCE4DB]/40 px-3 py-2 text-xs font-semibold text-[#D9562D] transition hover:border-[#F06A3C] hover:bg-[#F06A3C] hover:text-white"
-                                    >
-                                        <Pencil size={14} />
-                                        Update
-                                    </Link>
+                                    <EditMyListings listings={item} />
 
-                                    <button
-                                        type="button"
-                                        className="inline-flex items-center gap-1.5 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-xs font-semibold text-red-600 transition hover:border-red-600 hover:bg-red-600 hover:text-white"
-                                    >
-                                        <Trash2 size={14} />
-                                        Delete
-                                    </button>
+                                    <DeleteMyListings
+                                        listings={item}
+                                        onDeleted={handleListingDeleted}
+                                    />
                                 </div>
                             </div>
                         ))}
