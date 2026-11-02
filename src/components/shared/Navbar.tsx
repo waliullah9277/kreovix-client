@@ -42,7 +42,7 @@ const Navbar = () => {
         { name: "Profile", href: "/profile", icon: UserRound  },
         { name: "Add New Studio", href: "/add-new-studio", icon: Plus },
         { name: "My Studio Listings", href: "/my-listings", icon: Building2 },
-        { name: "My Bookings", href: "/dashboard/my-bookings", icon: CalendarDays },
+        { name: "My Bookings", href: "/my-bookings", icon: CalendarDays },
     ];
 
     const handleNavClick = (href: string) => {

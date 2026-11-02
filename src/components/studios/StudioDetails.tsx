@@ -30,6 +30,7 @@ import {
     Heart,
 } from "lucide-react";
 import type { ElementType } from "react";
+import BookingCard from "../my-bookings/BookingCard";
 
 interface Studio {
     _id: string;
@@ -79,7 +80,6 @@ const StudioDetails = ({ studio }: Props) => {
     const amenities = studio.amenities || [];
 
     const [activeImage, setActiveImage] = useState(0);
-    const [showBooking, setShowBooking] = useState(false);
     const [showAllAmenities, setShowAllAmenities] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
@@ -168,8 +168,8 @@ const StudioDetails = ({ studio }: Props) => {
                     <button
                         onClick={() => setIsSaved(!isSaved)}
                         className={`flex items-center gap-2 self-start rounded-full border px-4 py-2.5 text-sm font-medium transition sm:self-auto ${isSaved
-                                ? "border-[#F06A3C] bg-[#F06A3C]/10 text-[#F06A3C]"
-                                : "border-[#EAE5DF] text-[#242321] hover:border-[#F06A3C] hover:text-[#F06A3C]"
+                            ? "border-[#F06A3C] bg-[#F06A3C]/10 text-[#F06A3C]"
+                            : "border-[#EAE5DF] text-[#242321] hover:border-[#F06A3C] hover:text-[#F06A3C]"
                             }`}
                     >
                         <Heart
@@ -228,8 +228,8 @@ const StudioDetails = ({ studio }: Props) => {
                                             key={image + index}
                                             onClick={() => setActiveImage(index)}
                                             className={`group relative h-[110px] overflow-hidden rounded-xl bg-[#EAE5DF] sm:h-[170px] lg:h-full ${activeImage === index
-                                                    ? "ring-2 ring-[#F06A3C] ring-offset-2"
-                                                    : ""
+                                                ? "ring-2 ring-[#F06A3C] ring-offset-2"
+                                                : ""
                                                 }`}
                                         >
                                             <Image
@@ -252,8 +252,8 @@ const StudioDetails = ({ studio }: Props) => {
                                             key={image + index}
                                             onClick={() => setActiveImage(index)}
                                             className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition ${activeImage === index
-                                                    ? "ring-2 ring-[#F06A3C] ring-offset-1"
-                                                    : "opacity-70 hover:opacity-100"
+                                                ? "ring-2 ring-[#F06A3C] ring-offset-1"
+                                                : "opacity-70 hover:opacity-100"
                                                 }`}
                                         >
                                             <Image
@@ -471,131 +471,10 @@ const StudioDetails = ({ studio }: Props) => {
                     </div>
 
                     {/* Booking Card */}
-                    <aside className="lg:sticky lg:top-24 lg:h-fit">
-                        <div className="rounded-2xl border border-[#EAE5DF] bg-white p-6 shadow-sm">
-
-                            <div className="flex items-end gap-1">
-                                <span className="text-3xl font-bold text-[#242321]">
-                                    ${studio.hourlyRate}
-                                </span>
-
-                                <span className="pb-1 text-sm text-[#77736F]">
-                                    / hour
-                                </span>
-                            </div>
-
-                            <div className="my-5 h-px bg-[#EAE5DF]" />
-
-                            <div className="space-y-4 text-sm">
-
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[#77736F]">
-                                        Hourly Rate
-                                    </span>
-
-                                    <span className="font-semibold text-[#242321]">
-                                        ${studio.hourlyRate}
-                                    </span>
-                                </div>
-
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[#77736F]">
-                                        Security Deposit
-                                    </span>
-
-                                    <span className="font-semibold text-[#242321]">
-                                        ${studio.securityDeposit}
-                                    </span>
-                                </div>
-
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[#77736F]">
-                                        Max Guests
-                                    </span>
-
-                                    <span className="font-semibold text-[#242321]">
-                                        {studio.maxCapacity} People
-                                    </span>
-                                </div>
-                            </div>
-
-                            <button
-                                onClick={() => setShowBooking(true)}
-                                className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-[#F06A3C] px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-[#D9562D]"
-                            >
-                                <CalendarDays size={18} />
-                                Book Workspace Now
-                            </button>
-
-                            <p className="mt-4 text-center text-xs text-[#77736F]">
-                                {`You ${`won't`} be charged yet.`}
-                            </p>
-
-                            <div className="mt-5 flex items-center justify-center gap-2 text-xs text-[#77736F]">
-                                <ShieldCheck
-                                    size={15}
-                                    className="text-green-600"
-                                />
-                                Secure workspace booking
-                            </div>
-                        </div>
-                    </aside>
+                    <BookingCard studio={studio} />
                 </div>
             </div>
-
-            {/* Booking Modal Placeholder */}
-            {showBooking && (
-                <div
-                    onClick={() => setShowBooking(false)}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-                >
-                    <div
-                        onClick={(e) => e.stopPropagation()}
-                        className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
-                    >
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-xl font-bold text-[#242321]">
-                                Book This Workspace
-                            </h2>
-
-                            <button
-                                onClick={() => setShowBooking(false)}
-                                aria-label="Close booking modal"
-                                className="text-2xl text-[#77736F] transition hover:text-[#242321]"
-                            >
-                                ×
-                            </button>
-                        </div>
-
-                        <p className="mt-3 text-sm text-[#77736F]">
-                            You are booking{" "}
-                            <strong>{studio.title}</strong>.
-                        </p>
-
-                        <div className="mt-5 rounded-xl bg-[#FAF8F5] p-4">
-                            <p className="text-sm text-[#77736F]">
-                                Hourly rate
-                            </p>
-
-                            <p className="mt-1 text-xl font-bold text-[#242321]">
-                                ${studio.hourlyRate} / hour
-                            </p>
-                        </div>
-
-                        <p className="mt-5 text-sm text-[#77736F]">
-                            Booking date, time, duration and confirmation will be added
-                            in the booking workflow.
-                        </p>
-
-                        <button
-                            onClick={() => setShowBooking(false)}
-                            className="mt-6 w-full rounded-full bg-[#F06A3C] px-5 py-3 font-semibold text-white transition hover:bg-[#D9562D]"
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
+    
         </main>
     );
 };
