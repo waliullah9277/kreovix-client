@@ -30,5 +30,6 @@ export const config = {
         "/studios/edit/:path",
         "/my-bookings",
         "/profile",
+        "/wishlist/:path",
     ],
 };

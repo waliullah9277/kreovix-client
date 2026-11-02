@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import type { ElementType } from "react";
 import BookingCard from "../my-bookings/BookingCard";
+import SaveStudioButton from "./SaveStudioButton";
 
 interface Studio {
     _id: string;
@@ -81,7 +82,6 @@ const StudioDetails = ({ studio }: Props) => {
 
     const [activeImage, setActiveImage] = useState(0);
     const [showAllAmenities, setShowAllAmenities] = useState(false);
-    const [isSaved, setIsSaved] = useState(false);
 
     // Next image
     const nextImage = () => {
@@ -165,19 +165,7 @@ const StudioDetails = ({ studio }: Props) => {
                     </div>
 
                     {/* Save Studio */}
-                    <button
-                        onClick={() => setIsSaved(!isSaved)}
-                        className={`flex items-center gap-2 self-start rounded-full border px-4 py-2.5 text-sm font-medium transition sm:self-auto ${isSaved
-                            ? "border-[#F06A3C] bg-[#F06A3C]/10 text-[#F06A3C]"
-                            : "border-[#EAE5DF] dark:border-[#374151] text-[#242321] dark:text-[#F9FAFB] hover:border-[#F06A3C] hover:text-[#F06A3C]"
-                            }`}
-                    >
-                        <Heart
-                            size={17}
-                            className={isSaved ? "fill-current" : ""}
-                        />
-                        {isSaved ? "Saved" : "Save Studio"}
-                    </button>
+                    <SaveStudioButton studioId={studio._id} />
                 </div>
 
                 {/* Image Gallery */}
@@ -474,7 +462,7 @@ const StudioDetails = ({ studio }: Props) => {
                     <BookingCard studio={studio} />
                 </div>
             </div>
-    
+
         </main>
     );
 };

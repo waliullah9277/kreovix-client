@@ -12,6 +12,7 @@ import {
     CalendarDays,
     LogOut,
     ChevronDown,
+    Heart
 } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
@@ -43,6 +44,7 @@ const Navbar = () => {
         { name: "Profile", href: "/profile", icon: UserRound },
         { name: "Add New Studio", href: "/add-new-studio", icon: Plus },
         { name: "My Studio Listings", href: "/my-listings", icon: Building2 },
+        { name: "My Wishlist", href: "/wishlist", icon: Heart },
         { name: "My Bookings", href: "/my-bookings", icon: CalendarDays },
     ];
 
