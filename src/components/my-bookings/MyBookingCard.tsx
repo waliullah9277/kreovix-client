@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import type { Booking } from "./MyBookings";
+import CancelBookingButton from "./CancelBookingButton";
 
 interface MyBookingCardProps {
     booking: Booking;
@@ -178,15 +179,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
 
                     {/* TODO: Implement Cancel Booking API */}
                     {status === "pending" && (
-                        <button
-                            type="button"
-                            disabled
-                            title="Cancel booking functionality coming soon"
-                            className="flex min-w-0 flex-1 cursor-not-allowed items-center justify-center gap-1.5 rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 text-xs font-semibold text-red-500 opacity-70"
-                        >
-                            <XCircle size={14} />
-                            Cancel
-                        </button>
+                        <CancelBookingButton id={booking._id} />
                     )}
 
                 </div>
@@ -256,15 +249,7 @@ const MyBookingCard = ({ booking, variant }: MyBookingCardProps) => {
 
                     {/* TODO: Implement Cancel Booking API */}
                     {status === "pending" && (
-                        <button
-                            type="button"
-                            disabled
-                            title="Cancel booking functionality coming soon"
-                            className="inline-flex cursor-not-allowed items-center gap-1 whitespace-nowrap rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-semibold text-red-500 opacity-70"
-                        >
-                            <XCircle size={14} />
-                            Cancel
-                        </button>
+                        <CancelBookingButton id={booking._id} />
                     )}
 
                 </div>
