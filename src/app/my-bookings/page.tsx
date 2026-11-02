@@ -1,10 +1,7 @@
+import MyBookings from "@/components/my-bookings/MyBookings";
 
-const MyBookings = () => {
-    return (
-        <div>
-            MyBookings
-        </div>
-    );
+const MyBookingsPage = () => {
+    return <MyBookings />;
 };
 
-export default MyBookings;
+export default MyBookingsPage;
