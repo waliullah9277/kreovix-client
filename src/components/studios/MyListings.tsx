@@ -3,9 +3,8 @@
 import { useState } from "react";
 import type { Studio } from "@/types/studio";
 import Link from "next/link";
-import { MapPin, Plus, Pencil, Trash2, Eye } from "lucide-react";
+import { MapPin, Plus, Pencil, Eye } from "lucide-react";
 import Image from "next/image";
-import EditMyListings from "./EditMyListings";
 import DeleteMyListings from "./DeleteMyListings";
 
 interface MyListingsProps {

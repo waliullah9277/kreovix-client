@@ -12,7 +12,8 @@ import {
     CalendarDays,
     LogOut,
     ChevronDown,
-    Heart
+    Heart,
+    Orbit
 } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
@@ -120,14 +121,17 @@ const Navbar = () => {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="shrink-0"
+                    className="flex shrink-0 items-center gap-2"
                     onClick={() => setActiveSection(null)}
                 >
-                    <span className="text-2xl font-extrabold tracking-tight text-[#242321] transition-colors dark:text-[#F9FAFB]">
-                        Kreo
-                        <span className="text-[#F06A3C]">
-                            vix
-                        </span>
+                    <Orbit
+                        size={30}
+                        strokeWidth={2}
+                        className="text-[#F06A3C]"
+                    />
+
+                    <span className="text-2xl font-extrabold tracking-tight text-[#242321] dark:text-[#F9FAFB]">
+                        Kreo<span className="text-[#F06A3C]">vix</span>
                     </span>
                 </Link>
 
@@ -138,11 +142,10 @@ const Navbar = () => {
                             key={link.href}
                             href={link.href}
                             onClick={() => handleNavClick(link.href)}
-                            className={`relative py-1 text-sm font-medium transition-colors duration-200 ${
-                                isActive(link.href)
+                            className={`relative py-1 text-sm font-medium transition-colors duration-200 ${isActive(link.href)
                                     ? "text-[#F06A3C]"
                                     : "text-[#77736F] hover:text-[#F06A3C] dark:text-[#CBD5E1] dark:hover:text-[#F06A3C]"
-                            }`}
+                                }`}
                         >
                             {link.name}
 
@@ -199,11 +202,10 @@ const Navbar = () => {
 
                                 <ChevronDown
                                     size={16}
-                                    className={`text-[#77736F] transition-transform dark:text-[#CBD5E1] ${
-                                        isProfileOpen
+                                    className={`text-[#77736F] transition-transform dark:text-[#CBD5E1] ${isProfileOpen
                                             ? "rotate-180"
                                             : ""
-                                    }`}
+                                        }`}
                                 />
                             </button>
 
@@ -296,11 +298,10 @@ const Navbar = () => {
                                     setIsMenuOpen(false);
                                     handleNavClick(link.href);
                                 }}
-                                className={`rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
-                                    isActive(link.href)
+                                className={`rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${isActive(link.href)
                                         ? "bg-[#FCE4DB] text-[#F06A3C] dark:bg-[#374151] dark:text-[#F06A3C]"
                                         : "text-[#77736F] hover:bg-white hover:text-[#F06A3C] dark:text-[#CBD5E1] dark:hover:bg-[#1F2937] dark:hover:text-[#F06A3C]"
-                                }`}
+                                    }`}
                             >
                                 {link.name}
                             </Link>

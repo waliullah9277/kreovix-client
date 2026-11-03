@@ -1,7 +1,8 @@
 
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -39,7 +40,17 @@ const AllStudiosPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const selectedCategory =
+    searchParams.get("category")?.trim() || "";
+
+  const activeCategory =
+    categories.find(
+      (category) =>
+        category.toLowerCase() === selectedCategory.toLowerCase()
+    ) ?? "All";
 
   // Fetch all studios
   useEffect(() => {
@@ -112,10 +123,27 @@ const AllStudiosPage = () => {
     ).length;
   };
 
+  const selectCategory = (category: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (category === "All") {
+      params.delete("category");
+    } else {
+      params.set("category", category);
+    }
+
+    const query = params.toString();
+
+    router.replace(
+      `/studios${query ? `?${query}` : ""}`,
+      { scroll: false }
+    );
+  };
+
   // Clear search and category filters
   const clearFilters = () => {
     setSearchTerm("");
-    setActiveCategory("All");
+    selectCategory("All");
   };
 
   return (
@@ -216,21 +244,19 @@ const AllStudiosPage = () => {
                 <button
                   key={category}
                   type="button"
-                  onClick={() => setActiveCategory(category)}
-                  className={`inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold transition ${
-                    isActive
-                      ? "border-[#F06A3C] bg-[#F06A3C] text-white shadow-sm"
-                      : "border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] text-[#77736F] dark:text-[#CBD5E1] hover:border-[#F06A3C]/50 hover:text-[#F06A3C]"
-                  }`}
+                  onClick={() => selectCategory(category)}
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold transition ${isActive
+                    ? "border-[#F06A3C] bg-[#F06A3C] text-white shadow-sm"
+                    : "border-[#EAE5DF] dark:border-[#374151] bg-white dark:bg-[#1F2937] text-[#77736F] dark:text-[#CBD5E1] hover:border-[#F06A3C]/50 hover:text-[#F06A3C]"
+                    }`}
                 >
                   {category}
 
                   <span
-                    className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold ${
-                      isActive
-                        ? "bg-white/20 text-white"
-                        : "bg-[#F5F2EE] dark:bg-[#374151] text-[#77736F] dark:text-[#CBD5E1]"
-                    }`}
+                    className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold ${isActive
+                      ? "bg-white/20 text-white"
+                      : "bg-[#F5F2EE] dark:bg-[#374151] text-[#77736F] dark:text-[#CBD5E1]"
+                      }`}
                   >
                     {count}
                   </span>
@@ -405,4 +431,14 @@ const AllStudiosPage = () => {
   );
 };
 
-export default AllStudiosPage;
+const StudiosPage = () => (
+  <Suspense
+    fallback={
+      <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#111827]" />
+    }
+  >
+    <AllStudiosPage />
+  </Suspense>
+);
+
+export default StudiosPage;

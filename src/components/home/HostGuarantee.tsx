@@ -57,7 +57,7 @@ const HostGuarantee = () => {
               Create with confidence.
               <br />
               <span className="text-[#F06A3C]">
-                We've got your back.
+                {`We've got your back.`}
               </span>
             </h2>
           </div>

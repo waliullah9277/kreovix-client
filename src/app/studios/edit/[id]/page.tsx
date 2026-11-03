@@ -31,7 +31,6 @@ export default function EditStudioPage({
         if (isPending) return;
 
         if (!session?.user) {
-            setLoading(false);
             router.replace("/login");
             return;
         }
@@ -80,6 +79,11 @@ export default function EditStudioPage({
         return () => controller.abort();
     }, [id, isPending, session?.user, router]);
 
+    // Private Route
+    if (!isPending && !session?.user) {
+        return null;
+    }
+
     // Loading
     if (isPending || loading) {
         return (
@@ -87,11 +91,6 @@ export default function EditStudioPage({
                 <Loader2 className="h-8 w-8 animate-spin text-[#F06A3C]" />
             </div>
         );
-    }
-
-    // Private Route
-    if (!session?.user) {
-        return null;
     }
 
     // Studio Not Found

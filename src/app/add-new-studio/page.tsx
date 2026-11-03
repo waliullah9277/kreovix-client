@@ -17,6 +17,7 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
+import Image from "next/image";
 
 const categories = [
   "Photo Studios",
@@ -365,10 +366,12 @@ const AddNewStudio = () => {
 
               {formData.imageUrl && (
                 <div className="overflow-hidden rounded-xl border border-[#EAE5DF] dark:border-[#374151]">
-                  <img
+                  <Image
                     src={formData.imageUrl}
                     alt="Studio preview"
                     className="h-52 w-full object-cover"
+                    width={300}
+                    height={300}
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}

@@ -6,7 +6,6 @@ import {
     Clock3,
     Hourglass,
     Wallet,
-    XCircle,
 } from "lucide-react";
 
 import type { Booking } from "./MyBookings";

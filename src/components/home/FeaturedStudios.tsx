@@ -67,8 +67,6 @@ const FeaturedStudios = () => {
     useEffect(() => {
         if (!api) return;
 
-        onSelect(api);
-
         api.on("select", onSelect);
         api.on("reInit", onSelect);
 

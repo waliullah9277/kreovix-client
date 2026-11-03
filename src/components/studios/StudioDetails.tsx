@@ -24,10 +24,8 @@ import {
     Monitor,
     Users,
     Clock,
-    CalendarDays,
     CheckCircle2,
     ChevronRight,
-    Heart,
 } from "lucide-react";
 import type { ElementType } from "react";
 import BookingCard from "../my-bookings/BookingCard";

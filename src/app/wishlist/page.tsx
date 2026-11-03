@@ -45,7 +45,6 @@ export default function WishlistPage() {
     if (isPending) return;
 
     if (!userId) {
-      setLoading(false);
       router.replace("/login?callbackUrl=%2Fwishlist");
       return;
     }

@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Mail,
   MapPin,
+  Orbit,
 } from "lucide-react";
 
 const Footer = () => {
@@ -17,27 +18,27 @@ const Footer = () => {
   ];
 
   const categories = [
-    {
-      name: "Photography Studios",
-      href: "/studios?category=photography",
-    },
-    {
-      name: "Film & Production",
-      href: "/studios?category=film",
-    },
-    {
-      name: "Podcast Studios",
-      href: "/studios?category=podcast",
-    },
-    {
-      name: "Creative Spaces",
-      href: "/studios?category=creative",
-    },
-    {
-      name: "Event Spaces",
-      href: "/studios?category=event",
-    },
-  ];
+  {
+    name: "Photo Studios",
+    href: "/studios?category=Photo%20Studios",
+  },
+  {
+    name: "Sound Stages",
+    href: "/studios?category=Sound%20Stages",
+  },
+  {
+    name: "Podcast Rooms",
+    href: "/studios?category=Podcast%20Rooms",
+  },
+  {
+    name: "Music Suites",
+    href: "/studios?category=Music%20Suites",
+  },
+  {
+    name: "Art Workshops",
+    href: "/studios?category=Art%20Workshops",
+  },
+];
 
   return (
     <footer className="relative overflow-hidden bg-[#17232E] text-white">
@@ -115,7 +116,11 @@ const Footer = () => {
               className="inline-flex items-center gap-2.5"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F06A3C]">
-                <span className="text-xl font-bold text-white">K</span>
+                <Orbit
+                  size={23}
+                  strokeWidth={2}
+                  className="text-white"
+                />
               </div>
 
               <span className="text-xl font-bold tracking-tight">
@@ -268,7 +273,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row items-center sm:items-center sm:justify-between">
           <p className="text-xs text-white/40">
             © {new Date().getFullYear()} Kreovix. All rights reserved.
           </p>
