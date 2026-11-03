@@ -120,7 +120,7 @@ const AddNewStudio = () => {
         toast.error("Authentication token not found!");
         return;
       }
-      console.log(token)
+      // console.log(token)
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/add-new-studio`,
         {

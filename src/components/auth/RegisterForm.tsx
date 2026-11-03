@@ -66,7 +66,7 @@ const RegisterForm = () => {
             password: string;
         };
 
-        console.log(user);
+        // console.log(user);
 
         const { data, error } = await authClient.signUp.email({
             ...user,
